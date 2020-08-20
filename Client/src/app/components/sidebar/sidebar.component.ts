@@ -7,16 +7,6 @@ declare interface RouteInfo {
   class: string;
 }
 export const ROUTES: RouteInfo[] = [
-  { path: "/dashboard", title: "Dashboard", icon: "design_app", class: "" },
-  { path: "/icons", title: "Icons", icon: "education_atom", class: "" },
-  // { path: '/maps', title: 'Maps',  icon:'location_map-big', class: '' },
-  {
-    path: "/notifications",
-    title: "Notifications",
-    icon: "ui-1_bell-53",
-    class: "",
-  },
-
   {
     path: "/user-profile",
     title: "User Profile",
@@ -24,18 +14,28 @@ export const ROUTES: RouteInfo[] = [
     class: "",
   },
   {
-    path: "/table-list",
-    title: "Table List",
+    path: "/notifications",
+    title: "Notifications",
+    icon: "ui-1_bell-53",
+    class: "",
+  },
+  {
+    path: "/watch-list",
+    title: "Watch List",
     icon: "design_bullet-list-67",
     class: "",
   },
   {
-    path: "/typography",
-    title: "Typography",
-    icon: "text_caps-small",
+    path: "/upcoming",
+    title: "Upcoming",
+    icon: "ui-1_calendar-60",
     class: "",
   },
-  // { path: '/upgrade', title: 'Upgrade to PRO',  icon:'objects_spaceship', class: 'active active-pro' }
+  { path: "/explore", title: "Explore", icon: "ui-1_zoom-bold", class: "" },
+  { path: "/feed", title: "Feed", icon: "tech_laptop", class: "" },
+  { path: "/dashboard", title: "Dashboard", icon: "design_app", class: "" },
+  // { path: '/upgrade', title: 'Upgrade to PRO',  icon:'objects_spaceship', class: 'active active-pro' },
+  // { path: '/maps', title: 'Maps',  icon:'location_map-big', class: '' },
 ];
 
 @Component({
