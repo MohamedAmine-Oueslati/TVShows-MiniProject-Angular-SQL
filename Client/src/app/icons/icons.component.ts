@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { showsModel } from "./icons.model";
 
 @Component({
   selector: "app-icons",
@@ -6,7 +8,24 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./icons.component.css"],
 })
 export class IconsComponent implements OnInit {
-  constructor() {}
+  public shows = [];
+  constructor(private http: HttpClient) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.http
+      .get<showsModel[]>("http://localhost:4200/fetchshows")
+      .subscribe((data) => {
+        console.log(data);
+        this.shows = data;
+      });
+  }
+  // constructor(private iconsService: IconsService) {}
+
+  // ngOnInit() {
+  //   this.iconsService.getShows()
+  //     .subscribe((data) => {
+  //       console.log(data);
+  //       this.shows = data;
+  //     });
+  // }
 }

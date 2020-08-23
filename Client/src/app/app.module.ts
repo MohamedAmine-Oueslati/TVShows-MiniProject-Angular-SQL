@@ -19,7 +19,6 @@ import { AppComponent } from "./app.component";
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 import { LogInComponent } from "./homecomponents/log-in/log-in.component";
 import { RegisterComponent } from "./homecomponents/register/register.component";
-import { FeedComponent } from './feed/feed.component';
 
 @NgModule({
   imports: [
@@ -42,7 +41,6 @@ import { FeedComponent } from './feed/feed.component';
     AdminLayoutComponent,
     LogInComponent,
     RegisterComponent,
-    FeedComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

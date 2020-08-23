@@ -63,9 +63,15 @@ function searchShow(query) {
   fetch(url)
     .then(result => result.json())
     .then((data) => {
-      console.log(data)
+      return data
     })
 }
+
+app.get("/fetchshows", (req, res) => {
+  var arr = [{ score: 10, show: "amine" },
+  { score: 20, show: "juve" }]
+  res.send(arr)
+})
 
 
 app.listen(PORT, () => {
