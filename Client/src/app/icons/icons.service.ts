@@ -5,7 +5,7 @@
 
 // @Injectable()
 // export class IconsService {
-//   private url: string = "/fetchshows";
+//   private url: string = "http://localhost:4200/fetchshows";
 //   constructor(private http: HttpClient) {}
 
 //   getShows(): Observable<showsModel[]> {

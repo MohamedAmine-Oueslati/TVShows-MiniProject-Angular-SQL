@@ -1,4 +1,8 @@
-export interface showsModel {
+export class ShowsModel {
   score: number;
-  show: string;
+  show: any;
+}
+
+export class SearchModel {
+  search: string;
 }

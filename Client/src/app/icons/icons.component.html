@@ -4,12 +4,25 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h5 class="title">100 Awesome Nucleo Icons</h5>
-          <p class="category">
-            Handcrafted by our friends from
-            <a href="https://nucleoapp.com/?ref=1712">NucleoApp</a>
-          </p>
+          <h3 class="title">Explore</h3>
+          <h5 class="category">Choose TV Shows you want to watch</h5>
         </div>
+        <form (submit)="onSubmit()">
+          <div class="input-group no-border col-md-10">
+            <input
+              type="text"
+              name="query"
+              class="form-control"
+              placeholder="Search..."
+              [(ngModel)]="query"
+            />
+            <div class="input-group-append">
+              <div class="input-group-text" (click)="searchShow()">
+                <i class="now-ui-icons ui-1_zoom-bold"></i>
+              </div>
+            </div>
+          </div>
+        </form>
         <div class="card-body all-icons">
           <div class="row">
             <div
@@ -21,7 +34,18 @@
                 <p>{{ show }}</p>
               </div>
             </div>
-            <div
+            <div class="card" style="width: 20rem; margin: 20px">
+              <img class="card-img-top" src="..." alt="Card image cap" />
+              <div class="card-body">
+                <h4 class="card-title">TV Show title</h4>
+                <p class="card-text">
+                  Some quick example text to build on the card title and make up
+                  the bulk of the card's content.
+                </p>
+                <a href="#" class="btn btn-primary">More Details</a>
+              </div>
+            </div>
+            <!-- <div
               class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6"
             >
               <div class="font-icon-detail">
@@ -812,7 +836,7 @@
                 <i class="now-ui-icons users_single-02"></i>
                 <p>users_single-02</p>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

@@ -4,8 +4,21 @@ const fetch = require("node-fetch");
 const db = require('./Database-SQL')
 
 const PORT = process.env.PORT || 4000;
-// const bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 // const path = require('path');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
+
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  next();
+});
+
 
 
 
@@ -58,19 +71,26 @@ app.get('/createpoststable', (req, res) => {
 
 
 // fetch API
-function searchShow(query) {
+var searchShow = async (query) => {
   var url = `http://api.tvmaze.com/search/shows?q=${query}`
-  fetch(url)
-    .then(result => result.json())
-    .then((data) => {
-      return data
-    })
+  var response = await fetch(url)
+  var data = await response.json()
+  return data
 }
 
 app.get("/fetchshows", (req, res) => {
-  var arr = [{ score: 10, show: "amine" },
-  { score: 20, show: "juve" }]
-  res.send(arr)
+  var query = 'the walking dead'
+  var arr = searchShow(query)
+  console.log(arr)
+  res.json(arr)
+})
+
+app.post("/searchshows", (req, res) => {
+  var query = req.body
+  // console.log(query)
+  var arr = searchShow(query.query)
+  console.log(arr)
+  res.json(arr)
 })
 
 
