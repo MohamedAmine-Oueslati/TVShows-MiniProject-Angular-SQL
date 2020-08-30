@@ -25,24 +25,31 @@
         </form>
         <div class="card-body all-icons">
           <div class="row">
-            <div
+            <!-- <div
               class="font-icon-list col-lg-2 col-md-3 col-sm-4 col-xs-6 col-xs-6"
               *ngFor="let show of shows"
             >
               <div class="font-icon-detail">
                 <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-                <p>{{ show }}</p>
+                <p>{{ show.show.name }}</p>
               </div>
-            </div>
-            <div class="card" style="width: 20rem; margin: 20px">
-              <img class="card-img-top" src="..." alt="Card image cap" />
+            </div> -->
+            <div
+              class="card"
+              style="width: 20rem; margin: 10px"
+              *ngFor="let search of searched"
+            >
+              <img
+                class="card-img-top"
+                src="{{ search.show.image.original }}"
+                alt="Card image cap"
+              />
               <div class="card-body">
-                <h4 class="card-title">TV Show title</h4>
+                <h2 class="card-title">{{ search.show.name }}</h2>
                 <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                  {{ search.show.summary }}
                 </p>
-                <a href="#" class="btn btn-primary">More Details</a>
+                <a href="/show" class="btn btn-primary">More Details</a>
               </div>
             </div>
             <!-- <div

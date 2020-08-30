@@ -34,8 +34,7 @@ export const ROUTES: RouteInfo[] = [
   { path: "/explore", title: "Explore", icon: "ui-1_zoom-bold", class: "" },
   { path: "/feed", title: "Feed", icon: "tech_laptop", class: "" },
   { path: "/dashboard", title: "Dashboard", icon: "design_app", class: "" },
-  // { path: '/upgrade', title: 'Upgrade to PRO',  icon:'objects_spaceship', class: 'active active-pro' },
-  // { path: '/maps', title: 'Maps',  icon:'location_map-big', class: '' },
+  // { path: "/show", title: "Show", icon: "design_app", class: "" },
 ];
 
 @Component({

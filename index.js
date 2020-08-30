@@ -78,19 +78,25 @@ var searchShow = async (query) => {
   return data
 }
 
-app.get("/fetchshows", (req, res) => {
-  var query = 'the walking dead'
-  var arr = searchShow(query)
-  console.log(arr)
-  res.json(arr)
-})
-
 app.post("/searchshows", (req, res) => {
   var query = req.body
   // console.log(query)
-  var arr = searchShow(query.query)
-  console.log(arr)
-  res.json(arr)
+  searchShow(query.query)
+    .then((data) => {
+      // console.log(data)
+      res.json(data)
+    })
+  // console.log(arr)
+  // res.json(arr)
+})
+
+app.get("/fetchshows", (req, res) => {
+  var query = 'the walking dead'
+  searchShow(query)
+    .then((data) => {
+      // console.log(data)
+      res.json(data)
+    })
 })
 
 
