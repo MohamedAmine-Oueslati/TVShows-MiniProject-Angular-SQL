@@ -27,20 +27,21 @@
           <div class="row">
             <div
               class="card"
-              style="width: 20rem; margin: 10px"
+              style="width: 18rem; margin: 10px"
               *ngFor="let search of searched"
             >
               <img
                 class="card-img-top"
                 src="{{ search.show.image.original }}"
+                height="400rem"
                 alt="Card image cap"
               />
               <div class="card-body">
                 <h2 class="card-title">{{ search.show.name }}</h2>
                 <p class="card-text">
-                  {{ search.show.summary.substr(0, 100) }} ...
+                  {{ search.show.summary.substr(0, 100) | summary }} ...
                 </p>
-                <button (click)="toggleDetail(search)" class="btn btn-primary">
+                <button (click)="toggleDetail(search)" class="btn btn-danger">
                   More Details
                 </button>
               </div>
@@ -55,14 +56,68 @@
 <div *ngIf="detail === true" class="main-content">
   <div class="row">
     <div class="card card-nav-tabs col-md-12">
-      <h4 class="card-header card-header-info">Featured</h4>
-      <div class="card-body">
-        <h4 class="card-title">{{ show.show.name }}</h4>
-        <p class="card-text">
-          {{ show.show.summary }}
-        </p>
-        <button (click)="toggleDetail()" class="btn btn-primary">Back</button>
+      <!-- <h4 class="card-header card-header-info">Featured</h4> -->
+      <div
+        class="card"
+        style="
+          width: 15rem;
+          margin: 10px;
+          height: 22rem;
+          padding: 10px;
+          float: left;
+        "
+      >
+        <img
+          class="card-img-top"
+          src="{{ show.show.image.original }}"
+          alt="Card image cap"
+        />
       </div>
+      <div
+        class="card"
+        style="
+          float: left;
+          margin: 10px;
+          width: 40rem;
+          height: 22rem;
+          padding: 20px;
+        "
+      >
+        <h2 class="card-title">
+          <b> {{ show.show.name }} </b>
+        </h2>
+        <button type="button" class="btn btn-danger btn-round">
+          <i class="fa fa-heart"></i> Add to my Shows
+        </button>
+        <h4 class="card-title">Rating : {{ show.show.rating.average }}</h4>
+        <h4 class="card-title">
+          Genre : {{ show.show.genres[0] }} , {{ show.show.genres[1] }}
+        </h4>
+        <h4 class="card-title" *ngIf="show.show.network">
+          {{ show.show.schedule.days[0] }} at {{ show.show.schedule.time }} |
+          {{ show.show.network.name }} | {{ show.show.status }}
+        </h4>
+        <h4
+          class="card-title"
+          *ngIf="show.show.webChannel && !show.show.network"
+        >
+          {{ show.show.schedule.days[0] }} | {{ show.show.webChannel.name }} |
+          {{ show.show.status }}
+        </h4>
+      </div>
+      <div class="card" style="width: 56rem; padding: 10px; margin: 10px">
+        <p class="card-text"><b>Summary :</b></p>
+        <p class="card-text">
+          {{ show.show.summary | summary }}
+        </p>
+      </div>
+      <button
+        (click)="toggleDetail()"
+        class="btn btn-danger"
+        style="display: block"
+      >
+        Back
+      </button>
     </div>
   </div>
 </div>
