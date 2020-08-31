@@ -8,18 +8,19 @@ import { ShowsModel, SearchModel } from "./icons.model";
   styleUrls: ["./icons.component.css"],
 })
 export class IconsComponent implements OnInit {
-  public shows: any;
+  public show: any;
   public searched: any;
   public query: string;
+  public detail: boolean = false;
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.http
-      .get<ShowsModel[]>("http://localhost:4000/fetchshows")
-      .subscribe((data) => {
-        console.log(data);
-        this.shows = data;
-      });
+    // this.http
+    //   .get<ShowsModel[]>("http://localhost:4000/fetchshows")
+    //   .subscribe((data) => {
+    //     console.log(data);
+    //     this.shows = data;
+    //   });
   }
 
   onSubmit() {
@@ -37,6 +38,14 @@ export class IconsComponent implements OnInit {
         this.searched = data;
       });
   }
+
+  toggleDetail(element) {
+    this.detail = !this.detail;
+
+    let index = this.searched.indexOf(element);
+    this.show = this.searched[index];
+  }
+
   // constructor(private iconsService: IconsService) {}
 
   // ngOnInit() {
