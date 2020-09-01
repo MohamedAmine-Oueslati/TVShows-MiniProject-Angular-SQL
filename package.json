@@ -28,6 +28,7 @@
     "mysql2": "^2.1.0",
     "node-fetch": "^2.6.0",
     "path": "^0.12.7",
+    "payload": "^1.0.3",
     "sequelize": "^6.3.4",
     "sqlite3": "^5.0.0"
   }

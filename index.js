@@ -1,10 +1,13 @@
 const express = require('express');
 const app = express();
 const fetch = require("node-fetch");
+const mysql = require('mysql');
+
 const db = require('./Database-SQL')
 
 const PORT = process.env.PORT || 4000;
 const cors = require("cors");
+const bcrypt = require("bcrypt");
 const bodyParser = require('body-parser');
 // const path = require('path');
 
@@ -26,7 +29,6 @@ app.use((req, res, next) => {
 var Users = require("./routes/Users")
 
 app.use("/users", Users)
-
 
 
 

@@ -8,10 +8,8 @@
         />
       </div>
 
-      <form class="login100-form validate-form">
-        <span class="login100-form-title">
-          Sign Up
-        </span>
+      <form class="login100-form validate-form" (submit)="onSubmit()">
+        <span class="login100-form-title"> Sign Up </span>
 
         <div
           class="wrap-input100 validate-input"
@@ -22,6 +20,7 @@
             type="text"
             name="email"
             placeholder="Email"
+            [(ngModel)]="email"
           />
           <span class="focus-input100"></span>
           <span class="symbol-input100">
@@ -38,6 +37,7 @@
             type="text"
             name="username"
             placeholder="Username"
+            [(ngModel)]="username"
           />
           <span class="focus-input100"></span>
           <span class="symbol-input100">
@@ -54,6 +54,7 @@
             type="password"
             name="pass"
             placeholder="Password"
+            [(ngModel)]="password"
           />
           <span class="focus-input100"></span>
           <span class="symbol-input100">
@@ -62,7 +63,7 @@
         </div>
 
         <div class="container-login100-form-btn">
-          <button class="login100-form-btn" [routerLink]="'/dashboard'">
+          <button class="login100-form-btn" (click)="authregister()">
             Register
           </button>
         </div>
