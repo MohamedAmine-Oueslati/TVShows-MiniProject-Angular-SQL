@@ -12,7 +12,9 @@ export class RegisterComponent implements OnInit {
   public email: string;
   public username: string;
   public password: string;
-  constructor(private http: HttpClient) {}
+  public auth: any;
+  public invalidRegister: boolean;
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {}
 
@@ -29,6 +31,11 @@ export class RegisterComponent implements OnInit {
       })
       .subscribe((data) => {
         console.log(data);
+        if (data["token"]) {
+          this.router.navigateByUrl("/login");
+        } else {
+          this.invalidRegister = true;
+        }
       });
   }
 }

@@ -67,7 +67,9 @@
             Register
           </button>
         </div>
-
+        <div class="validation" *ngIf="invalidRegister">
+          Invalid Email or Password
+        </div>
         <div class="text-center p-t-100">
           <a class="txt2" href="/login">
             I have an Account
