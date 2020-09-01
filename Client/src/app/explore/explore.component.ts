@@ -1,13 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { ShowsModel, SearchModel } from "./icons.model";
+import { ShowsModel, SearchModel } from "./explore.model";
 
 @Component({
-  selector: "app-icons",
-  templateUrl: "./icons.component.html",
-  styleUrls: ["./icons.component.css"],
+  selector: "app-explore",
+  templateUrl: "./explore.component.html",
+  styleUrls: ["./explore.component.css"],
 })
-export class IconsComponent implements OnInit {
+export class ExploreComponent implements OnInit {
   public show: any;
   public searched: any;
   public query: string;
