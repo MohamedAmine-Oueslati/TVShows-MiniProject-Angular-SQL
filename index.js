@@ -4,11 +4,13 @@ const fetch = require("node-fetch");
 const db = require('./Database-SQL')
 
 const PORT = process.env.PORT || 4000;
+const cors = require("cors");
 const bodyParser = require('body-parser');
 // const path = require('path');
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors())
+app.use(bodyParser.urlencoded({ extended: false }));
 
 
 
@@ -20,54 +22,12 @@ app.use((req, res, next) => {
 });
 
 
+// authentication
+var Users = require("./routes/Users")
+
+app.use("/users", Users)
 
 
-// Create DB
-app.get('/createdb', (req, res) => {
-  let sql = 'CREATE DATABASE nodemysql';
-  db.db.query(sql, (err, result) => {
-    if (err) {
-      throw err
-    }
-    res.send('Database created')
-  })
-})
-
-// Create Table
-app.get('/createpoststable', (req, res) => {
-  let sql = 'CREATE TABLE posts(id int AUTO_INCREMENT, title VARCHAR(255), body VARCHAR(255), PRIMARY KEY(id))';
-  db.db.query(sql, (err, result) => {
-    if (err) {
-      throw err
-    }
-    console.log(result)
-    res.send('Posts table created')
-  })
-})
-// Add Post
-// app.get('/addpost', (req, res) => {
-//     let post = { title: 'amine', body: 'Juve' };
-//     let sql = 'INSERT INTO posts SET ?'
-//     let query = db.db.query(sql, post, (err, result) => {
-//         if (err) {
-//             throw err
-//         }
-//         console.log(result)
-//         res.send('Post 1 added')
-//     })
-// })
-
-// Delete Post
-// app.get('/deletepost/:id', (req, res) => {
-//     let sql = `DELETE FROM posts WHERE id = ${req.params.id}`
-//     let query = db.db.query(sql, (err, result) => {
-//         if (err) {
-//             throw err
-//         }
-//         console.log(result)
-//         res.send('Post 1 deleted')
-//     })
-// })
 
 
 // fetch API
@@ -80,24 +40,19 @@ var searchShow = async (query) => {
 
 app.post("/searchshows", (req, res) => {
   var query = req.body
-  // console.log(query)
   searchShow(query.query)
     .then((data) => {
-      // console.log(data)
       res.json(data)
     })
-  // console.log(arr)
-  // res.json(arr)
 })
 
-app.get("/fetchshows", (req, res) => {
-  var query = 'the walking dead'
-  searchShow(query)
-    .then((data) => {
-      // console.log(data)
-      res.json(data)
-    })
-})
+// app.get("/fetchshows", (req, res) => {
+//   var query = 'the walking dead'
+//   searchShow(query)
+//     .then((data) => {
+//       res.json(data)
+//     })
+// })
 
 
 app.listen(PORT, () => {
