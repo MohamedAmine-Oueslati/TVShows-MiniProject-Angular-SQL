@@ -55,6 +55,7 @@ users.post("/register", (req, res) => {
     }
     let sql = `SELECT * FROM users WHERE email='${req.body.email}'`
     let query = db.db.query(sql, (err, result) => {
+        console.log(result.length)
         if (result.length === 0) {
             const hash = bcrypt.hashSync(userData.password, 10)
             userData.password = hash
@@ -68,7 +69,34 @@ users.post("/register", (req, res) => {
             })
         }
         else {
-            res.json({ error: 'User already exists' })
+            res.send('User already exists')
+        }
+    })
+})
+
+
+users.post("/login", (req, res) => {
+    let sql = `SELECT * FROM users WHERE email='${req.body.email}'`
+    let query = db.db.query(sql, (err, data) => {
+        if (bcrypt.compareSync(req.body.password, data[0].password)) {
+            let token = jwt.sign({ data: data }, process.env.SECRET_KEY, { expiresIn: 1440 })
+            res.json({ token: token })
+        }
+        else {
+            res.send('User does not exist')
+        }
+    })
+})
+
+users.get('/profile', (req, res) => {
+    var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+    let sql = `SELECT * FROM users WHERE id='${decoded.id}'`
+    let query = db.db.query(sql, (err, data) => {
+        if (data.length !== 0) {
+            res.json(data[0])
+        }
+        else {
+            res.send('User does not exist')
         }
     })
 })
