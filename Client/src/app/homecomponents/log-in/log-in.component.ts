@@ -13,6 +13,7 @@ export class LogInComponent {
     email: "",
     username: "",
     password: "",
+    fullName: "",
     firstName: "",
     lastName: "",
     address: "",

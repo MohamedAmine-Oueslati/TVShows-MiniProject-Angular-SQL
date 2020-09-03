@@ -27,8 +27,11 @@ app.use((req, res, next) => {
 
 // authentication
 var Users = require("./routes/Users")
-
 app.use("/users", Users)
+
+//update profile
+var Update = require("./routes/Update")
+app.use("/", Update)
 
 
 

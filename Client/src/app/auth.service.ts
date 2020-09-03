@@ -16,6 +16,8 @@ export interface UserDetails {
   country: string;
   zipCode: string;
   aboutMe: string;
+  exp: number;
+  iat: number;
 }
 interface TokenResponse {
   token: string;
@@ -26,6 +28,7 @@ export interface TokenPayload {
   email: string;
   username: string;
   password: string;
+  fullName: string;
   firstName: string;
   lastName: string;
   address: string;
@@ -63,11 +66,15 @@ export class AuthService {
     }
   }
 
-  //   public isLoggedIn(): boolean {
-  //     const user = this.getUserDetails();
-  //     if (user) {
-  //     }
-  //   }
+  public isLoggedIn(): boolean {
+    const user = this.getUserDetails();
+    if (user) {
+      return user.exp > Date.now() / 1000;
+    } else {
+      return false;
+    }
+  }
+
   public register(user: TokenPayload): Observable<any> {
     const base = this.http.post("http://localhost:4000/users/register", user);
     const request = base.pipe(

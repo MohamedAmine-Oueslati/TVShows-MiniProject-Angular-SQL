@@ -7,9 +7,9 @@
           <h5 class="title">Edit Profile</h5>
         </div>
         <div class="card-body">
-          <form>
+          <form (submit)="onSubmit()">
             <div class="row">
-              <div class="col-md-5 pr-1">
+              <div class="col-md-4 pr-1">
                 <div class="form-group">
                   <label>Member</label>
                   <input
@@ -21,7 +21,7 @@
                   />
                 </div>
               </div>
-              <div class="col-md-3 px-1">
+              <div class="col-md-4 px-1">
                 <div class="form-group">
                   <label>Username</label>
                   <input
@@ -29,6 +29,7 @@
                     class="form-control"
                     placeholder="Username"
                     value="{{ details?.username }}"
+                    disabled=""
                   />
                 </div>
               </div>
@@ -39,6 +40,7 @@
                     name="email"
                     id="email"
                     type="email"
+                    disabled=""
                     class="form-control"
                     placeholder="Email"
                     value="{{ details?.email }}"
@@ -51,10 +53,12 @@
                 <div class="form-group">
                   <label>First Name</label>
                   <input
+                    name="firstName"
                     type="text"
                     class="form-control"
-                    placeholder="Company"
+                    placeholder="First Name"
                     value="{{ details?.firstName }}"
+                    [(ngModel)]="data.firstName"
                   />
                 </div>
               </div>
@@ -62,10 +66,12 @@
                 <div class="form-group">
                   <label>Last Name</label>
                   <input
+                    name="lastName"
                     type="text"
                     class="form-control"
                     placeholder="Last Name"
                     value="{{ details?.LastName }}"
+                    [(ngModel)]="data.lastName"
                   />
                 </div>
               </div>
@@ -75,10 +81,12 @@
                 <div class="form-group">
                   <label>Address</label>
                   <input
+                    name="address"
                     type="text"
                     class="form-control"
                     placeholder="Home Address"
                     value="{{ details?.address }}"
+                    [(ngModel)]="data.address"
                   />
                 </div>
               </div>
@@ -88,10 +96,12 @@
                 <div class="form-group">
                   <label>City</label>
                   <input
+                    name="city"
                     type="text"
                     class="form-control"
                     placeholder="City"
                     value="{{ details?.city }}"
+                    [(ngModel)]="data.city"
                   />
                 </div>
               </div>
@@ -99,10 +109,12 @@
                 <div class="form-group">
                   <label>Country</label>
                   <input
+                    name="country"
                     type="text"
                     class="form-control"
                     placeholder="Country"
                     value="{{ details?.country }}"
+                    [(ngModel)]="data.country"
                   />
                 </div>
               </div>
@@ -110,9 +122,11 @@
                 <div class="form-group">
                   <label>Postal Code</label>
                   <input
+                    name="zipCode"
                     type="number"
                     class="form-control"
                     placeholder="{{ details?.zipCode }}"
+                    [(ngModel)]="data.zipCode"
                   />
                 </div>
               </div>
@@ -122,11 +136,13 @@
                 <div class="form-group">
                   <label>About Me</label>
                   <textarea
+                    name="aboutMe"
                     rows="4"
                     cols="80"
                     class="form-control"
                     placeholder="Here can be your description"
                     value="{{ details?.aboutMe }}"
+                    [(ngModel)]="data.aboutMe"
                   ></textarea>
                 </div>
               </div>
@@ -136,6 +152,7 @@
                 <button
                   class="btn btn-danger"
                   style="margin: 20px; border-radius: 10px"
+                  (click)="update()"
                 >
                   Save
                 </button>
@@ -159,7 +176,7 @@
                 alt="..."
               />
               <h4 class="title">
-                {{ details?.firstName }} {{ details?.LastName }}
+                {{ details?.fullName }}
               </h4>
             </a>
             <p class="description">"{{ details?.username }}"</p>

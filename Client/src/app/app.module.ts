@@ -12,6 +12,7 @@ import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ToastrModule } from "ngx-toastr";
 import { AuthService } from "./auth.service";
+import { AuthGuardService } from "./auth.guard.service";
 import { AppRoutingModule } from "./app.routing";
 import { ComponentsModule } from "./components/components.module";
 
@@ -44,7 +45,7 @@ import { RegisterComponent } from "./homecomponents/register/register.component"
     RegisterComponent,
     // SummaryPipe,
   ],
-  providers: [AuthService],
+  providers: [AuthService, AuthGuardService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -17,6 +17,7 @@ export class RegisterComponent {
     email: "",
     username: "",
     password: "",
+    fullName: "",
     firstName: "",
     lastName: "",
     address: "",
@@ -37,7 +38,7 @@ export class RegisterComponent {
     console.log(this.credentials);
     this.authService.register(this.credentials).subscribe(
       () => {
-        this.router.navigateByUrl("/");
+        this.router.navigateByUrl("/dashboard");
       },
       (err) => {
         console.log(err);

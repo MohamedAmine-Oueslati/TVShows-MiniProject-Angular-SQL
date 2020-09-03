@@ -48,12 +48,13 @@ process.env.SECRET_KEY = 'secret'
 
 
 router.post("/register", (req, res) => {
+    const today = new Date()
     const userData = {
         email: req.body.email,
         username: req.body.username,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        password: req.body.password
+        fullName: req.body.fullName,
+        password: req.body.password,
+        created: today
     }
     let sql = `SELECT * FROM users WHERE email='${req.body.email}'`
     let query = db.db.query(sql, (err, result) => {
@@ -92,10 +93,8 @@ router.post("/login", (req, res) => {
 
 router.get('/profile', (req, res) => {
     var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
-    console.log(decoded)
     let sql = `SELECT * FROM users WHERE id='${decoded.data[0].id}'`
     let query = db.db.query(sql, (err, data) => {
-        console.log(data)
         if (data.length !== 0) {
             res.json(data[0])
         }
