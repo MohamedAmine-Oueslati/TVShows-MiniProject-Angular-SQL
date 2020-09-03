@@ -12,6 +12,7 @@ export class UserProfileComponent {
   ngOnInit() {
     this.authService.profile().subscribe(
       (user) => {
+        console.log(user);
         this.details = user;
       },
       (err) => {

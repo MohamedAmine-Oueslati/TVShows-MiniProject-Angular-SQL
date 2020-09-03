@@ -1,5 +1,5 @@
 const express = require('express');
-const users = express.Router();
+const router = express.Router();
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt")
@@ -7,13 +7,13 @@ const db = require('../Database-SQL')
 
 
 const User = require("../models/User")
-users.use(cors())
+router.use(cors())
 
 process.env.SECRET_KEY = 'secret'
 
 
 // //register
-// users.post('/register', (req, res) => {
+// router.post('/register', (req, res) => {
 //     const userData = {
 //         email: req.body.email,
 //         username: req.body.username,
@@ -47,10 +47,12 @@ process.env.SECRET_KEY = 'secret'
 
 
 
-users.post("/register", (req, res) => {
+router.post("/register", (req, res) => {
     const userData = {
         email: req.body.email,
         username: req.body.username,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         password: req.body.password
     }
     let sql = `SELECT * FROM users WHERE email='${req.body.email}'`
@@ -75,7 +77,7 @@ users.post("/register", (req, res) => {
 })
 
 
-users.post("/login", (req, res) => {
+router.post("/login", (req, res) => {
     let sql = `SELECT * FROM users WHERE email='${req.body.email}'`
     let query = db.db.query(sql, (err, data) => {
         if (bcrypt.compareSync(req.body.password, data[0].password)) {
@@ -88,10 +90,12 @@ users.post("/login", (req, res) => {
     })
 })
 
-users.get('/profile', (req, res) => {
+router.get('/profile', (req, res) => {
     var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
-    let sql = `SELECT * FROM users WHERE id='${decoded.id}'`
+    console.log(decoded)
+    let sql = `SELECT * FROM users WHERE id='${decoded.data[0].id}'`
     let query = db.db.query(sql, (err, data) => {
+        console.log(data)
         if (data.length !== 0) {
             res.json(data[0])
         }
@@ -102,4 +106,4 @@ users.get('/profile', (req, res) => {
 })
 
 
-module.exports = users
+module.exports = router

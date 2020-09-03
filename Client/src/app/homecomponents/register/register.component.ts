@@ -29,14 +29,15 @@ export class RegisterComponent {
 
   constructor(private router: Router, private authService: AuthService) {}
 
-  onSubmit() {
-    return this.credentials.email, this.credentials.password;
-  }
+  // onSubmit() {
+  //   return this.credentials.email, this.credentials.password;
+  // }
 
   register() {
+    console.log(this.credentials);
     this.authService.register(this.credentials).subscribe(
       () => {
-        this.router.navigateByUrl("/dashboard");
+        this.router.navigateByUrl("/");
       },
       (err) => {
         console.log(err);

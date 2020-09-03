@@ -11,13 +11,13 @@
             <div class="row">
               <div class="col-md-5 pr-1">
                 <div class="form-group">
-                  <label>Company (disabled)</label>
+                  <label>Member</label>
                   <input
                     type="text"
                     class="form-control"
                     disabled=""
-                    placeholder="Company"
-                    value="Creative Code Inc."
+                    placeholder="User"
+                    value="User"
                   />
                 </div>
               </div>
@@ -41,7 +41,7 @@
                     type="email"
                     class="form-control"
                     placeholder="Email"
-                    value="{{ details?.username }}"
+                    value="{{ details?.email }}"
                   />
                 </div>
               </div>
@@ -54,7 +54,7 @@
                     type="text"
                     class="form-control"
                     placeholder="Company"
-                    value="Mike"
+                    value="{{ details?.firstName }}"
                   />
                 </div>
               </div>
@@ -65,7 +65,7 @@
                     type="text"
                     class="form-control"
                     placeholder="Last Name"
-                    value="Andrew"
+                    value="{{ details?.LastName }}"
                   />
                 </div>
               </div>
@@ -78,7 +78,7 @@
                     type="text"
                     class="form-control"
                     placeholder="Home Address"
-                    value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
+                    value="{{ details?.address }}"
                   />
                 </div>
               </div>
@@ -91,7 +91,7 @@
                     type="text"
                     class="form-control"
                     placeholder="City"
-                    value="Mike"
+                    value="{{ details?.city }}"
                   />
                 </div>
               </div>
@@ -102,7 +102,7 @@
                     type="text"
                     class="form-control"
                     placeholder="Country"
-                    value="Andrew"
+                    value="{{ details?.country }}"
                   />
                 </div>
               </div>
@@ -112,7 +112,7 @@
                   <input
                     type="number"
                     class="form-control"
-                    placeholder="ZIP Code"
+                    placeholder="{{ details?.zipCode }}"
                   />
                 </div>
               </div>
@@ -126,11 +126,19 @@
                     cols="80"
                     class="form-control"
                     placeholder="Here can be your description"
-                    value="Mike"
-                  >
-Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea
-                  >
+                    value="{{ details?.aboutMe }}"
+                  ></textarea>
                 </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group">
+                <button
+                  class="btn btn-danger"
+                  style="margin: 20px; border-radius: 10px"
+                >
+                  Save
+                </button>
               </div>
             </div>
           </form>
@@ -150,16 +158,13 @@ Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</texta
                 src="../assets/img/mike.jpg"
                 alt="..."
               />
-              <h5 class="title">Mike Andrew</h5>
+              <h4 class="title">
+                {{ details?.firstName }} {{ details?.LastName }}
+              </h4>
             </a>
-            <p class="description">michael24</p>
+            <p class="description">"{{ details?.username }}"</p>
           </div>
-          <p class="description text-center">
-            "Lamborghini Mercy
-            <br />
-            Your chick she so thirsty <br />
-            I'm in that two seat Lambo"
-          </p>
+          <p class="description text-center">"{{ details?.aboutMe }}"</p>
         </div>
         <hr />
         <div class="button-container">
