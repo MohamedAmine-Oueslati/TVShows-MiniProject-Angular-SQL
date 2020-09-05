@@ -31,17 +31,7 @@ export class UserProfileComponent {
       }
     );
   }
-  onSubmit() {
-    return (
-      this.data.firstName,
-      this.data.lastName,
-      this.data.address,
-      this.data.city,
-      this.data.country,
-      this.data.zipCode,
-      this.data.aboutMe
-    );
-  }
+
   update() {
     this.data.id = this.details.id;
     this.http

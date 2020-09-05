@@ -49,10 +49,7 @@ export class AuthService {
     this.token = token;
   }
   private getToken(): string {
-    if (!this.token) {
-      localStorage.getItem("userToken");
-    }
-    return this.token;
+    return localStorage.getItem("userToken");
   }
 
   public getUserDetails(): UserDetails {
@@ -74,6 +71,7 @@ export class AuthService {
     } else {
       return false;
     }
+    // return !!localStorage.getItem("userToken");
   }
 
   public register(user: TokenPayload): Observable<any> {

@@ -85,9 +85,9 @@
               ><span class="symbol-input100">
                 <i class="fa fa-user" aria-hidden="true"></i>
               </span>
-              {{ auth.getUserDetails()?.data[0].fullName }}
+              {{ auth.getUserDetails().data[0]?.fullName }}
             </a>
-            <a class="dropdown-item" href="/user-profile">Account</a>
+            <a class="dropdown-item" href="/user/user-profile">Account</a>
             <a (click)="auth.logout()" class="dropdown-item"> Logout </a>
           </div>
         </li>

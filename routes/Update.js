@@ -11,21 +11,20 @@ router.use(cors())
 
 
 router.post('/update', (req, res) => {
-    console.log(req.body)
-    let sql = `UPDATE users SET 
-  firstName= '${req.body.firstName}',
-  LastName= '${req.body.lastName}',
-  address= '${req.body.address}',
-  city= '${req.body.city}',
-  country= '${req.body.country}',
-  zipCode= '${req.body.zipCode}',
-  aboutMe= '${req.body.aboutMe}'
-    WHERE id=${req.body.id}`
+    let str = "";
+    if (!!req.body.firstName) { str += `firstName= '${req.body.firstName}',` }
+    if (!!req.body.lastName) { str += `LastName= '${req.body.lastName}',` }
+    if (!!req.body.address) { str += `address= '${req.body.address}',` }
+    if (!!req.body.city) { str += `city= '${req.body.city}',` }
+    if (!!req.body.country) { str += `country= '${req.body.country}',` }
+    if (!!req.body.zipCode) { str += `zipCode= '${req.body.zipCode}',` }
+    if (!!req.body.aboutMe) { str += `aboutMe= '${req.body.aboutMe}',` }
+    str = str.slice(0, str.length - 1)
+    let sql = `UPDATE users SET ${str} WHERE id=${req.body.id}`
     let query = db.db.query(sql, (err, result) => {
         if (err) {
             throw err
         }
-        console.log(result)
         res.send('profile updated')
     })
 })
