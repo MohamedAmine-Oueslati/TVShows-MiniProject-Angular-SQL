@@ -33,7 +33,7 @@ export class LogInComponent {
   login() {
     this.authService.login(this.credentials).subscribe(
       () => {
-        this.router.navigateByUrl("/dashboard");
+        this.router.navigateByUrl("/user/dashboard");
       },
       (err) => {
         console.log(err);

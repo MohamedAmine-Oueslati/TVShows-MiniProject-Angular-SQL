@@ -9,6 +9,7 @@ export interface UserDetails {
   email: string;
   username: string;
   password: string;
+  fullName: string;
   firstName: string;
   lastName: string;
   address: string;

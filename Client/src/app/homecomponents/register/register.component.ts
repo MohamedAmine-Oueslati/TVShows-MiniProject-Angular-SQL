@@ -35,10 +35,10 @@ export class RegisterComponent {
   // }
 
   register() {
-    console.log(this.credentials);
     this.authService.register(this.credentials).subscribe(
-      () => {
-        this.router.navigateByUrl("/dashboard");
+      (res) => {
+        console.log(res);
+        this.router.navigateByUrl("/user/dashboard");
       },
       (err) => {
         console.log(err);

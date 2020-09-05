@@ -6,6 +6,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 import { LogInComponent } from "./homecomponents/log-in/log-in.component";
 import { RegisterComponent } from "./homecomponents/register/register.component";
+import { AuthGuardService } from "./auth.guard.service";
 
 const routes: Routes = [
   {
@@ -24,8 +25,9 @@ const routes: Routes = [
     children: [],
   },
   {
-    path: "",
+    path: "user",
     component: AdminLayoutComponent,
+    canActivate: [AuthGuardService],
     children: [
       {
         path: "",

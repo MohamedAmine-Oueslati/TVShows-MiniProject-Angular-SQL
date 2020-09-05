@@ -52,13 +52,12 @@ router.post("/register", (req, res) => {
     const userData = {
         email: req.body.email,
         username: req.body.username,
-        fullName: req.body.fullName,
         password: req.body.password,
-        created: today
+        created: today,
+        fullName: req.body.fullName
     }
     let sql = `SELECT * FROM users WHERE email='${req.body.email}'`
     let query = db.db.query(sql, (err, result) => {
-        console.log(result.length)
         if (result.length === 0) {
             const hash = bcrypt.hashSync(userData.password, 10)
             userData.password = hash
@@ -68,7 +67,7 @@ router.post("/register", (req, res) => {
                     throw err
                 }
                 let token = jwt.sign({ data: data }, process.env.SECRET_KEY, { expiresIn: 1440 })
-                res.json({ token: token })
+                res.status(200).send({ token })
             })
         }
         else {
@@ -81,19 +80,23 @@ router.post("/register", (req, res) => {
 router.post("/login", (req, res) => {
     let sql = `SELECT * FROM users WHERE email='${req.body.email}'`
     let query = db.db.query(sql, (err, data) => {
-        if (bcrypt.compareSync(req.body.password, data[0].password)) {
+        if (data.length === 0) {
+            res.status(401).send('User does not exist')
+        }
+        else if (bcrypt.compareSync(req.body.password, data[0].password)) {
             let token = jwt.sign({ data: data }, process.env.SECRET_KEY, { expiresIn: 1440 })
-            res.json({ token: token })
+            res.status(200).send({ token })
         }
         else {
-            res.send('User does not exist')
+            res.status(401).send('Invalid password')
         }
     })
 })
 
 router.get('/profile', (req, res) => {
     var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
-    let sql = `SELECT * FROM users WHERE id='${decoded.data[0].id}'`
+    let id = decoded.data.length ? decoded.data[0].id : decoded.data.insertId
+    let sql = `SELECT * FROM users WHERE id=${id}`
     let query = db.db.query(sql, (err, data) => {
         if (data.length !== 0) {
             res.json(data[0])
