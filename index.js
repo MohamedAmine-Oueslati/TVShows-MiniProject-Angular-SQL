@@ -33,6 +33,14 @@ app.use("/users", Users)
 var Update = require("./routes/Update")
 app.use("/", Update)
 
+//Explore Shows
+var Explore = require("./routes/Explore")
+app.use("/", Explore)
+
+//Watch List Shows
+var WatchList = require("./routes/WatchList")
+app.use("/", WatchList)
+
 
 
 // fetch API

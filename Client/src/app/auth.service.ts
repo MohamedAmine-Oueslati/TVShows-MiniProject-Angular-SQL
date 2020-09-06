@@ -41,12 +41,10 @@ export interface TokenPayload {
 
 @Injectable()
 export class AuthService {
-  private token: string;
   constructor(private http: HttpClient, private router: Router) {}
 
   private saveToken(token: string): void {
     localStorage.setItem("userToken", token);
-    this.token = token;
   }
   private getToken(): string {
     return localStorage.getItem("userToken");
@@ -71,7 +69,6 @@ export class AuthService {
     } else {
       return false;
     }
-    // return !!localStorage.getItem("userToken");
   }
 
   public register(user: TokenPayload): Observable<any> {
@@ -107,7 +104,6 @@ export class AuthService {
   }
 
   public logout(): void {
-    this.token = "";
     window.localStorage.removeItem("userToken");
     this.router.navigateByUrl("/");
   }

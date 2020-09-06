@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { ShowsModel, SearchModel } from "./explore.model";
+import { ShowsModel, SearchModel, AddShowModel } from "./explore.model";
+import { AuthService } from "./../auth.service";
 
 @Component({
   selector: "app-explore",
@@ -8,33 +9,32 @@ import { ShowsModel, SearchModel } from "./explore.model";
   styleUrls: ["./explore.component.css"],
 })
 export class ExploreComponent implements OnInit {
+  public user: any;
   public show: any;
   public searched: any;
   public query: string;
   public detail: boolean = false;
-  constructor(private http: HttpClient) {}
+  public status: boolean = false;
+  constructor(private authService: AuthService, private http: HttpClient) {}
 
   ngOnInit() {
-    // this.http
-    //   .get<ShowsModel[]>("http://localhost:4000/fetchshows")
-    //   .subscribe((data) => {
-    //     console.log(data);
-    //     this.shows = data;
-    //   });
-  }
-
-  onSubmit() {
-    return this.query;
+    this.authService.profile().subscribe(
+      (user) => {
+        console.log(user);
+        this.user = user;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   searchShow() {
-    console.log(this.query);
     this.http
       .post<SearchModel[]>("http://localhost:4000/searchshows", {
         query: this.query,
       })
       .subscribe((data) => {
-        console.log(data);
         this.searched = data;
       });
   }
@@ -44,15 +44,37 @@ export class ExploreComponent implements OnInit {
 
     let index = this.searched.indexOf(element);
     this.show = this.searched[index];
+    this.http
+      .post<AddShowModel[]>("http://localhost:4000/status", {
+        showId: this.show.show.id,
+        email: this.user.email,
+      })
+      .subscribe((data) => {
+        this.status = data["status"];
+      });
   }
 
-  // constructor(private iconsService: IconsService) {}
+  toggleAdd(element) {
+    this.status = true;
+    this.http
+      .post<AddShowModel[]>("http://localhost:4000/addshow", {
+        showId: element.show.id,
+        email: this.user.email,
+      })
+      .subscribe((data) => {
+        console.log(data);
+      });
+  }
 
-  // ngOnInit() {
-  //   this.iconsService.getShows()
-  //     .subscribe((data) => {
-  //       console.log(data);
-  //       this.shows = data;
-  //     });
-  // }
+  toggleRemove(element) {
+    this.status = false;
+    this.http
+      .post<AddShowModel[]>("http://localhost:4000/removeshow", {
+        showId: element.show.id,
+        email: this.user.email,
+      })
+      .subscribe((data) => {
+        console.log(data);
+      });
+  }
 }

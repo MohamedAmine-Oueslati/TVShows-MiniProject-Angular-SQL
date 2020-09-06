@@ -1,0 +1,15 @@
+.exploreCardInfo {
+  float: left;
+  margin: 10px;
+  width: 40rem;
+  height: 22rem;
+  padding: 20px;
+}
+
+.exploreCardImg {
+  width: 15rem;
+  margin: 10px;
+  height: 22rem;
+  padding: 10px;
+  float: left;
+}

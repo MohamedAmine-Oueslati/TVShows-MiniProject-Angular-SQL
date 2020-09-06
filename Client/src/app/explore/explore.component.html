@@ -1,5 +1,5 @@
 <div class="panel-header panel-header-sm"></div>
-<div *ngIf="detail === false" class="main-content">
+<div *ngIf="!detail" class="main-content">
   <div class="row">
     <div class="col-md-12">
       <div class="card">
@@ -7,7 +7,7 @@
           <h3 class="title">Explore</h3>
           <h5 class="category">Choose TV Shows you want to watch</h5>
         </div>
-        <form (submit)="onSubmit()">
+        <form>
           <div class="input-group no-border col-md-10">
             <input
               type="text"
@@ -53,41 +53,36 @@
   </div>
 </div>
 
-<div *ngIf="detail === true" class="main-content">
+<div *ngIf="detail" class="main-content">
   <div class="row">
     <div class="card card-nav-tabs col-md-12">
       <!-- <h4 class="card-header card-header-info">Featured</h4> -->
-      <div
-        class="card"
-        style="
-          width: 15rem;
-          margin: 10px;
-          height: 22rem;
-          padding: 10px;
-          float: left;
-        "
-      >
+      <div class="card exploreCardImg">
         <img
           class="card-img-top"
           src="{{ show.show.image.original }}"
           alt="Card image cap"
         />
       </div>
-      <div
-        class="card"
-        style="
-          float: left;
-          margin: 10px;
-          width: 40rem;
-          height: 22rem;
-          padding: 20px;
-        "
-      >
+      <div class="card exploreCardInfo">
         <h2 class="card-title">
           <b> {{ show.show.name }} </b>
         </h2>
-        <button type="button" class="btn btn-danger btn-round">
+        <button
+          type="button"
+          class="btn btn-danger btn-round"
+          (click)="toggleAdd(show)"
+          *ngIf="!status"
+        >
           <i class="fa fa-heart"></i> Add to my Shows
+        </button>
+        <button
+          type="button"
+          class="btn btn-success btn-round"
+          (click)="toggleRemove(show)"
+          *ngIf="status"
+        >
+          <i class="fas fa-thumbs-up"></i> Show Added
         </button>
         <h4 class="card-title">Rating : {{ show.show.rating.average }}</h4>
         <h4 class="card-title">
