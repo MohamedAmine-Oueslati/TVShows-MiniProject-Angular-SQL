@@ -18,21 +18,17 @@ var searchShow = async (id) => {
     return data
 }
 
+var searchEpisode = async (id) => {
+    var url = `http://api.tvmaze.com/shows/${id}/episodes`
+    var response = await fetch(url)
+    var data = await response.json()
+    return data
+}
+
 router.post('/getshows', (req, res) => {
-    var array1 = []
-    var array2 = []
-    console.log(req.body)
     let sql = `SELECT * FROM shows WHERE email='${req.body.email}'`
     let query = db.db.query(sql, (err, data) => {
-        console.log(data)
-        for (let i = 0; i < data.length; i++) {
-            searchShow(data[i].showId)
-                .then((result) => {
-                    array1.push(result)
-                    //   res.json(data)
-                })
-        }
-        res.status(200).send({ data })
+        res.status(200).send(data)
     })
 })
 

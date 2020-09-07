@@ -13,3 +13,13 @@
   padding: 10px;
   float: left;
 }
+
+.card-img-top {
+  width: 18rem;
+  height: 22rem;
+}
+
+.divcardimg {
+  width: 15rem;
+  margin: 10px;
+}

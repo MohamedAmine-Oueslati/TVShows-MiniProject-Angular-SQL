@@ -25,21 +25,16 @@
         </form>
         <div class="card-body all-icons">
           <div class="row">
-            <div
-              class="card"
-              style="width: 18rem; margin: 10px"
-              *ngFor="let search of searched"
-            >
+            <div class="card divcardimg" *ngFor="let search of searched">
               <img
                 class="card-img-top"
                 src="{{ search.show.image.original }}"
-                height="400rem"
                 alt="Card image cap"
               />
               <div class="card-body">
                 <h2 class="card-title">{{ search.show.name }}</h2>
                 <p class="card-text">
-                  {{ search.show.summary.substr(0, 100) | summary }} ...
+                  {{ search.show.summary.substr(0, 80) | summary }} ...
                 </p>
                 <button (click)="toggleDetail(search)" class="btn btn-danger">
                   More Details
