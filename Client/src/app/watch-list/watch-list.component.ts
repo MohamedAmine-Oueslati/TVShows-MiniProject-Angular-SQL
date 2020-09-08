@@ -1,3 +1,4 @@
+import { WatchListService } from "./watch-list..service";
 import { GetShowModel } from "./watch-list.model";
 import { HttpClient } from "@angular/common/http";
 import { AuthService } from "./../auth.service";
@@ -13,7 +14,13 @@ export class WatchListComponent implements OnInit {
   public user: any;
   public shows: any;
   public episodes: any;
-  constructor(private authService: AuthService, private http: HttpClient) {}
+  public showSelected: any;
+  public episodeSelected: any;
+  public detail: boolean = false;
+  constructor(
+    private authService: AuthService,
+    private watchlistService: WatchListService
+  ) {}
 
   activeList(num) {
     this.active = num;
@@ -24,43 +31,24 @@ export class WatchListComponent implements OnInit {
       (user) => {
         console.log(user);
         this.user = user;
-        this.http
-          .post<GetShowModel[]>("http://localhost:4000/getshows", {
-            email: user.email,
-          })
-          .subscribe((data) => {
-            let array1 = [];
-            let array2 = [];
-            for (let i = 0; i < data.length; i++) {
-              this.searchShow(data[i]["showId"]).then((result) => {
-                array1.push(result);
-              });
-              this.searchEpisode(data[i]["showId"]).then((result) => {
-                array2.push(result);
-              });
-            }
-            console.log(array1);
-            console.log(array2);
-            this.shows = array1;
-            this.episodes = array2;
-          });
+        this.watchlistService.getShows(user.email).subscribe((data) => {
+          let arr = this.watchlistService.filterShows(data);
+          this.shows = arr[0];
+          this.episodes = arr[1];
+        });
       },
       (err) => {
         console.log(err);
       }
     );
   }
-  async searchShow(id) {
-    var url = `http://api.tvmaze.com/shows/${id}`;
-    var response = await fetch(url);
-    var data = await response.json();
-    return data;
-  }
 
-  async searchEpisode(id) {
-    var url = `http://api.tvmaze.com/shows/${id}/episodes`;
-    var response = await fetch(url);
-    var data = await response.json();
-    return data;
+  details(show) {
+    this.detail = true;
+    this.showSelected = show;
+    let index = this.shows.indexOf(show);
+    this.episodeSelected = this.episodes[index];
+    console.log(show);
+    console.log(this.episodes[index]);
   }
 }

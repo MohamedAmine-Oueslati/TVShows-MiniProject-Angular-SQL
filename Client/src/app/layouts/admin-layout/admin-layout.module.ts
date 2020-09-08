@@ -1,3 +1,4 @@
+import { EpisodesPipe } from "./../../episode.pipe";
 import { SummaryPipe } from "./../../summary.pipe";
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
@@ -37,6 +38,7 @@ import { ShowComponent } from "../../show/show.component";
     ShowComponent,
     NotificationsComponent,
     SummaryPipe,
+    EpisodesPipe,
   ],
 })
 export class AdminLayoutModule {}

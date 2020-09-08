@@ -1,0 +1,47 @@
+.CardImg {
+  width: 12rem;
+  margin: 7px;
+  height: 21rem;
+  padding: 10px;
+  cursor: pointer;
+  /* float: left; */
+}
+
+.divImg {
+  opacity: 0.3;
+  background-color: Black;
+  z-index: 10;
+}
+
+.divImg .card-img-top {
+  height: 16rem;
+  width: auto;
+  z-index: 5;
+}
+
+.texthovercont {
+  opacity: 1;
+  cursor: pointer;
+  position: absolute;
+  top: 32%;
+  left: 18%;
+  color: black;
+}
+
+.texthover {
+  margin: 4px;
+  text-align: center;
+  float: left;
+  font-weight: 800;
+  letter-spacing: 1;
+}
+
+.card-title1 {
+  font-weight: 800;
+  font-size: 17px;
+}
+
+.card-title2 {
+  font-weight: 800;
+  font-size: 13px;
+}

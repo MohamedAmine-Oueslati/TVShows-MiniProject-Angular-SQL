@@ -1,5 +1,5 @@
 <div class="panel-header panel-header-sm"></div>
-<div *ngIf="!detail" class="main-content">
+<div class="main-content">
   <div class="row">
     <div class="col-md-12">
       <div class="card">
@@ -29,13 +29,17 @@
           </div>
         </nav>
 
-        <div *ngIf="active === 1">
+        <div *ngIf="active === 1 && !detail">
           <div class="card-header">
             <h3 class="title">All Shows</h3>
           </div>
           <div class="card-body all-icons">
             <div class="row">
-              <div class="card watchlistCardImg" *ngFor="let show of shows">
+              <div
+                class="card watchlistCardImg"
+                *ngFor="let show of shows"
+                (click)="details(show)"
+              >
                 <img
                   class="card-img-top"
                   src="{{ show.image.original }}"
@@ -52,7 +56,7 @@
           </div>
         </div>
 
-        <div *ngIf="active === 2">
+        <div *ngIf="active === 2 && !detail">
           <div class="card-header">
             <h3 class="title">Watch Next</h3>
           </div>
@@ -63,7 +67,7 @@
           </div>
         </div>
 
-        <div *ngIf="active === 3">
+        <div *ngIf="active === 3 && !detail">
           <div class="card-header">
             <h3 class="title">Finished</h3>
           </div>
@@ -74,9 +78,20 @@
           </div>
         </div>
 
-        <div *ngIf="active === 4">
+        <div *ngIf="active === 4 && !detail">
           <div class="card-header">
             <h3 class="title">Not Started Yet</h3>
+          </div>
+          <div class="card-body all-icons">
+            <div class="row">
+              <div class="card watchlistCardImg"></div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="detail">
+          <div class="card-header">
+            <h3 class="title">{{ showSelected.name }}</h3>
           </div>
           <div class="card-body all-icons">
             <div class="row">

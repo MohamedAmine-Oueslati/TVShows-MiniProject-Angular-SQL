@@ -1,11 +1,44 @@
-<div class="panel-header panel-header-sm">
-  <div class="main-content">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header">
-            <h5 class="title">Upcoming</h5>
-            <p class="category"></p>
+<div class="panel-header panel-header-sm"></div>
+<div class="main-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="title">Upcoming</h3>
+        </div>
+        <div class="card-body all-icons">
+          <div class="row">
+            <div class="card CardImg" *ngFor="let show of shows">
+              <div class="divImg">
+                <img
+                  class="card-img-top"
+                  src="{{ show.data1.image.original }}"
+                  alt="Card image cap"
+                />
+              </div>
+              <div>
+                <h5 class="card-title1">
+                  S{{ show.data2.season | episode }}E{{
+                    show.data2.number | episode
+                  }}
+                </h5>
+                <h5 class="card-title2">{{ show.data1.name }}</h5>
+              </div>
+              <div class="texthovercont">
+                <div class="texthover">
+                  <p>01</p>
+                  <p>Days</p>
+                </div>
+                <div class="texthover">
+                  <p>01</p>
+                  <p>Hours</p>
+                </div>
+                <div class="texthover">
+                  <p>01</p>
+                  <p>Min</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
