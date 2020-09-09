@@ -6,10 +6,15 @@ import { Observable } from "rxjs";
 @Injectable()
 export class WatchListService {
   private url: string = "http://localhost:4000/getshows";
+  private url1: string = "http://localhost:4000/showdetails";
   constructor(private http: HttpClient) {}
 
   getShows(email): Observable<GetShowModel[]> {
     return this.http.post<GetShowModel[]>(this.url, { email });
+  }
+
+  showDetail(show): Observable<GetShowModel[]> {
+    return this.http.post<GetShowModel[]>(this.url1, { show });
   }
 
   async searchShow(id) {
@@ -33,17 +38,13 @@ export class WatchListService {
   }
 
   filterShows(data) {
-    let array1 = [];
-    let array2 = [];
+    let array = [];
     for (let i = 0; i < data.length; i++) {
       this.searchShow(data[i]["showId"]).then((result) => {
-        array1.push(result);
-      });
-      this.searchEpisode(data[i]["showId"]).then((result) => {
-        array2.push(result);
+        array.push(result);
       });
     }
-    return [array1, array2];
+    return array;
   }
 
   filterUpcoming(data) {

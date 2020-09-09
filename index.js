@@ -41,31 +41,9 @@ app.use("/", Explore)
 var WatchList = require("./routes/WatchList")
 app.use("/", WatchList)
 
-
-
-// fetch API
-var searchShow = async (query) => {
-  var url = `http://api.tvmaze.com/search/shows?q=${query}`
-  var response = await fetch(url)
-  var data = await response.json()
-  return data
-}
-
-app.post("/searchshows", (req, res) => {
-  var query = req.body
-  searchShow(query.query)
-    .then((data) => {
-      res.json(data)
-    })
-})
-
-// app.get("/fetchshows", (req, res) => {
-//   var query = 'the walking dead'
-//   searchShow(query)
-//     .then((data) => {
-//       res.json(data)
-//     })
-// })
+//Show Details
+var ShowDetails = require("./routes/ShowDetails")
+app.use("/", ShowDetails)
 
 
 app.listen(PORT, () => {

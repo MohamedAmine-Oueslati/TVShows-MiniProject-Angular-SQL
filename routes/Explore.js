@@ -2,9 +2,26 @@ const express = require('express');
 const router = express.Router();
 const cors = require("cors");
 const db = require('../Database-SQL')
+const fetch = require("node-fetch");
 
 router.use(cors())
 
+
+// fetch API
+var searchShow = async (query) => {
+    var url = `http://api.tvmaze.com/search/shows?q=${query}`
+    var response = await fetch(url)
+    var data = await response.json()
+    return data
+}
+
+router.post("/searchshows", (req, res) => {
+    var query = req.body
+    searchShow(query.query)
+        .then((data) => {
+            res.json(data)
+        })
+})
 
 // Add Show
 router.post('/addshow', (req, res) => {

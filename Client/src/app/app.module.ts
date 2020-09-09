@@ -1,4 +1,4 @@
-// import { SummaryPipe } from "./summary.pipe";
+import { ShowService } from "./show/show.service";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AngularMaterialModule } from "./homecomponents/homecomponents.module";
@@ -44,9 +44,8 @@ import { RegisterComponent } from "./homecomponents/register/register.component"
     AdminLayoutComponent,
     LogInComponent,
     RegisterComponent,
-    // SummaryPipe,
   ],
-  providers: [AuthService, AuthGuardService, WatchListService],
+  providers: [AuthService, AuthGuardService, WatchListService, ShowService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

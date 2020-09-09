@@ -1,3 +1,4 @@
+import { Router } from "@angular/router";
 import { WatchListService } from "./watch-list..service";
 import { GetShowModel } from "./watch-list.model";
 import { HttpClient } from "@angular/common/http";
@@ -13,13 +14,11 @@ export class WatchListComponent implements OnInit {
   public active: number = 1;
   public user: any;
   public shows: any;
-  public episodes: any;
-  public showSelected: any;
-  public episodeSelected: any;
   public detail: boolean = false;
   constructor(
     private authService: AuthService,
-    private watchlistService: WatchListService
+    private watchlistService: WatchListService,
+    private router: Router
   ) {}
 
   activeList(num) {
@@ -32,9 +31,7 @@ export class WatchListComponent implements OnInit {
         console.log(user);
         this.user = user;
         this.watchlistService.getShows(user.email).subscribe((data) => {
-          let arr = this.watchlistService.filterShows(data);
-          this.shows = arr[0];
-          this.episodes = arr[1];
+          this.shows = this.watchlistService.filterShows(data);
         });
       },
       (err) => {
@@ -44,11 +41,10 @@ export class WatchListComponent implements OnInit {
   }
 
   details(show) {
+    this.router.navigateByUrl("/user/show");
     this.detail = true;
-    this.showSelected = show;
-    let index = this.shows.indexOf(show);
-    this.episodeSelected = this.episodes[index];
-    console.log(show);
-    console.log(this.episodes[index]);
+    this.watchlistService.showDetail(show).subscribe((data) => {
+      console.log("data sent");
+    });
   }
 }
