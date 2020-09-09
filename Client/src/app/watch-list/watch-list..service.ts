@@ -53,7 +53,8 @@ export class WatchListService {
         if (data1._links.nextepisode) {
           this.searchNextEpisode(data1._links.nextepisode.href).then(
             (data2) => {
-              array.push({ data1, data2 });
+              let data3 = this.filterDate(data2.airstamp);
+              array.push({ data1, data2, data3 });
             }
           );
         }
@@ -61,5 +62,22 @@ export class WatchListService {
     }
     console.log(array);
     return array;
+  }
+
+  filterDate(date) {
+    var shour = Number(date.slice(11, 13)) + 1;
+    var sday = Number(date.slice(8, 10));
+    var smonth = Number(date.slice(5, 7));
+    var syear = Number(date.slice(0, 4));
+
+    var date1: any = new Date();
+    var date2: any = new Date(`${smonth}/${sday}/${syear}`);
+    var diffTime = Math.abs(date2 - date1) / 60 / 1000 + 60 + shour * 60;
+    var diffDays = Math.floor(diffTime / (60 * 24));
+    diffTime = diffTime - diffDays * 60 * 24;
+    var diffHours = Math.floor(diffTime / 60);
+    diffTime = diffTime - diffHours * 60;
+    var diffmins = Math.floor(diffTime);
+    return [diffDays, diffHours, diffmins];
   }
 }
