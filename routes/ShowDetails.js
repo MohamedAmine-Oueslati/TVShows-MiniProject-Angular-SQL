@@ -27,13 +27,13 @@ var searchEpisode = async (id) => {
 
 router.post('/showdetails', (req, res) => {
     if (req.body.hasOwnProperty('show')) {
-        let show = req.body.show
-        let id = req.body.show.id
-        console.log(req.body)
-        searchEpisode(id).then(data => {
-            res.status(200).send({ show, episode: data })
-        })
+        var show = req.body.show
+        var id = req.body.show.id
+        // console.log(req.body)
     }
+    searchEpisode(id).then(data => {
+        res.status(200).send({ show, episode: data })
+    })
 })
 
 

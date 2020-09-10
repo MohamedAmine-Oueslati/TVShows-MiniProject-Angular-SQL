@@ -41,10 +41,7 @@ export class WatchListComponent implements OnInit {
   }
 
   details(show) {
-    this.router.navigateByUrl("/user/show");
+    this.router.navigate(["/user/show", { id: show.id }]);
     this.detail = true;
-    this.watchlistService.showDetail(show).subscribe((data) => {
-      console.log("data sent");
-    });
   }
 }

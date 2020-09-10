@@ -11,4 +11,30 @@ export class ShowService {
   showDetail(): Observable<ShowDetailModel[]> {
     return this.http.post<ShowDetailModel[]>(this.url, {});
   }
+
+  async searchShow(id) {
+    var url = `http://api.tvmaze.com/shows/${id}`;
+    var response = await fetch(url);
+    var data = await response.json();
+    return data;
+  }
+
+  async searchEpisode(id) {
+    var url = `http://api.tvmaze.com/shows/${id}/episodes`;
+    var response = await fetch(url);
+    var data = await response.json();
+    return data;
+  }
+
+  filterShows(id) {
+    let array1 = [];
+    let array2 = [];
+    this.searchShow(id).then((result) => {
+      array1.push(result);
+    });
+    this.searchEpisode(id).then((result) => {
+      array2.push(result);
+    });
+    return [array1, array2];
+  }
 }

@@ -6,15 +6,10 @@ import { Observable } from "rxjs";
 @Injectable()
 export class WatchListService {
   private url: string = "http://localhost:4000/getshows";
-  private url1: string = "http://localhost:4000/showdetails";
   constructor(private http: HttpClient) {}
 
   getShows(email): Observable<GetShowModel[]> {
     return this.http.post<GetShowModel[]>(this.url, { email });
-  }
-
-  showDetail(show): Observable<GetShowModel[]> {
-    return this.http.post<GetShowModel[]>(this.url1, { show });
   }
 
   async searchShow(id) {

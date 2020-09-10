@@ -1,3 +1,4 @@
+import { ActivatedRoute } from "@angular/router";
 import { ShowService } from "./show.service";
 import { Component, OnInit } from "@angular/core";
 
@@ -7,11 +8,18 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./show.component.css"],
 })
 export class ShowComponent implements OnInit {
-  constructor(private showService: ShowService) {}
+  public show: any;
+  public episodes: any;
+  constructor(
+    private showService: ShowService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
-    this.showService.showDetail().subscribe((data) => {
-      console.log(data);
-    });
+    let id = this.route.snapshot.paramMap.get("id");
+    let data = this.showService.filterShows(id);
+    this.show = data[0];
+    this.episodes = data[1];
+    console.log(data[1]);
   }
 }

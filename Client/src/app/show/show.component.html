@@ -6,11 +6,60 @@
         <div class="card-header">
           <h3 class="title">TV Show Details</h3>
         </div>
-        <div class="card-body all-icons">
-          <div class="row">
-            <div class="card watchlistCardImg"></div>
+        <div
+          ngbDropdown
+          class="dropdown"
+          placement="bottom-right"
+          style="float: right; margin: 20px"
+        >
+          <button class="btn btn-default dropdown-toggle" ngbDropdownToggle>
+            Seasons
+          </button>
+          <div ngbDropdownMenu *ngFor="let ep of episodes[0]">
+            <a class="dropdown-item">Season 1</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item">Season 2</a>
+            <div class="dropdown-divider"></div>
           </div>
         </div>
+        <div class="cardEp">
+          <ul
+            class="list-group list-group-flush"
+            *ngFor="let ep of episodes[0]"
+          >
+            <li class="list-group-item">
+              <a class="numSpan"
+                ><span>{{ ep.number }}</span></a
+              >
+              <a class="nameSpan"
+                ><span>{{ ep.name }}</span></a
+              >
+              <a class="dateSpan"
+                ><span>{{ ep.airdate }}</span></a
+              >
+              <a class="checkSpan"
+                ><label class="container">
+                  <input type="checkbox" checked="checked" />
+                  <span class="checkmark"></span>
+                </label>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- <div class="card-body">
+          <div class="table-responsive">
+            <table class="table" *ngFor="let ep of episodes[0]">
+              <tbody>
+                <tr>
+                  <td>{{ ep.number }}</td>
+                  <td>{{ ep.name }}</td>
+                  <td>{{ ep.airdate }}</td>
+                  <td class="text-right"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div> -->
       </div>
     </div>
   </div>
