@@ -5,11 +5,23 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class ShowService {
-  private url: string = "http://localhost:4000/showdetails";
+  private url1: string = "http://localhost:4000/filtershows";
+  private url2: string = "http://localhost:4000/filterepisodes";
+  private url3: string = "http://localhost:4000/filterseasons";
+  private url4: string = "http://localhost:4000/filtercast";
   constructor(private http: HttpClient) {}
 
-  showDetail(): Observable<ShowDetailModel[]> {
-    return this.http.post<ShowDetailModel[]>(this.url, {});
+  filtershows(id: any): Observable<ShowDetailModel[]> {
+    return this.http.post<ShowDetailModel[]>(this.url1, { id });
+  }
+  filterepisodes(id: any): Observable<ShowDetailModel[]> {
+    return this.http.post<ShowDetailModel[]>(this.url2, { id });
+  }
+  filterseasons(id: any): Observable<ShowDetailModel[]> {
+    return this.http.post<ShowDetailModel[]>(this.url3, { id });
+  }
+  filtercast(id: any): Observable<ShowDetailModel[]> {
+    return this.http.post<ShowDetailModel[]>(this.url4, { id });
   }
 
   async searchShow(id) {
@@ -26,15 +38,30 @@ export class ShowService {
     return data;
   }
 
-  filterShows(id) {
-    let array1 = [];
-    let array2 = [];
+  filterShows(id: any) {
+    let array = [];
     this.searchShow(id).then((result) => {
-      array1.push(result);
+      array.push(result);
     });
+    return array;
+  }
+  filterEpisodes(id: any) {
+    let array = [];
     this.searchEpisode(id).then((result) => {
-      array2.push(result);
+      array.push(result);
     });
-    return [array1, array2];
+    return array;
+  }
+  filterSeasons(id: any) {
+    let array = [];
+    this.searchEpisode(id).then((result) => {
+      var numSeason = result[result.length - 1].season;
+      var arr = [];
+      for (var i = 1; i <= numSeason; i++) {
+        arr.push(i);
+      }
+      array.push(arr);
+    });
+    return array;
   }
 }

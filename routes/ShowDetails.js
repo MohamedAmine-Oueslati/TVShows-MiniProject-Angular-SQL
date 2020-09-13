@@ -25,14 +25,50 @@ var searchEpisode = async (id) => {
     return data
 }
 
-router.post('/showdetails', (req, res) => {
-    if (req.body.hasOwnProperty('show')) {
-        var show = req.body.show
-        var id = req.body.show.id
-        // console.log(req.body)
-    }
-    searchEpisode(id).then(data => {
-        res.status(200).send({ show, episode: data })
+var searchCast = async (id) => {
+    var url = `http://api.tvmaze.com/shows/${id}/cast`
+    var response = await fetch(url)
+    var data = await response.json()
+    return data
+}
+
+router.post('/filtershows', (req, res) => {
+    searchShow(req.body.id).then(shows => {
+        res.status(200).send({ shows })
+    })
+})
+router.post('/filterepisodes', (req, res) => {
+    searchEpisode(req.body.id).then(episodes => {
+        var numSeason = episodes[episodes.length - 1].season;
+        var ep = [];
+        for (let j = 1; j <= numSeason; j++) {
+            var arr = []
+            for (let i = 0; i < episodes.length; i++) {
+                if (episodes[i].season === j) { arr.push(episodes[i]) }
+            }
+            ep.push(arr)
+        }
+        res.status(200).send({ episodes: ep })
+    })
+})
+router.post('/filterseasons', (req, res) => {
+    searchEpisode(req.body.id).then(result => {
+        var numSeason = result[result.length - 1].season;
+        var seasons = [];
+        for (var i = 1; i <= numSeason; i++) {
+            seasons.push(i);
+        }
+        res.status(200).send({ seasons })
+    })
+})
+
+router.post('/filtercast', (req, res) => {
+    searchCast(req.body.id).then(result => {
+        let cast = []
+        for (let i = 0; i < 6; i++) {
+            cast.push(result[i])
+        }
+        res.status(200).send({ cast })
     })
 })
 

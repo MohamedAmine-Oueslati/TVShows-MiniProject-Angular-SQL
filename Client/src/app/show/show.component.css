@@ -7,7 +7,7 @@
   float: left;
 }
 .dateSpan {
-  width: 200px;
+  width: 220px;
   float: left;
 }
 
@@ -87,7 +87,7 @@ li:nth-child(odd) {
 
 /* Style the checkmark/indicator */
 .container .checkmark:after {
-  left: 9px;
+  left: 8px;
   top: 5px;
   width: 5px;
   height: 10px;
@@ -96,4 +96,26 @@ li:nth-child(odd) {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+/* cast CSS */
+
+.watchlistCardImg {
+  width: 12rem;
+  margin: 7px;
+  height: 21rem;
+  padding: 10px;
+  cursor: pointer;
+  /* float: left; */
+}
+
+.card-img-top {
+  opacity: 1;
+  height: 16rem;
+  width: auto;
+}
+
+.card-title {
+  font-weight: 800;
+  font-size: 13px;
 }
