@@ -72,5 +72,34 @@ router.post('/filtercast', (req, res) => {
     })
 })
 
+router.post('/epchecked', (req, res) => {
+    let arr = req.body.arr
+    let str = arr.join(',')
+    let sql = `UPDATE shows SET checker= '${str}' 
+    WHERE email='${req.body.email}' AND showId=${req.body.showId}`
+    let query = db.db.query(sql, (err, result) => {
+        if (err) {
+            throw err
+        }
+        res.send('check updated')
+    })
+})
+
+
+router.post('/filtercheck', (req, res) => {
+    let sql = `SELECT * FROM shows
+    WHERE email='${req.body.email}' AND showId=${req.body.showId}`
+    let query = db.db.query(sql, (err, result) => {
+        if (err) {
+            throw err
+        }
+        let check = []
+        if (result[0].checker) {
+            check = result[0].checker.split(',')
+        }
+        res.status(200).send({ check })
+    })
+})
+
 
 module.exports = router

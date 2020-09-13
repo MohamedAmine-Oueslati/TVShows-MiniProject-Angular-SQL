@@ -9,7 +9,7 @@
 
         <form>
           <select
-            class="form-control"
+            class="form-control col-md-10"
             data-toggle="select"
             data-minimum-results-for-search="Infinity"
             [(ngModel)]="selected"
@@ -24,7 +24,10 @@
             class="cardEp"
             *ngIf="episodes.indexOf(episode) + 1 == selected.slice(7)"
           >
-            <ul class="list-group list-group-flush" *ngFor="let ep of episode">
+            <ul
+              class="list-group list-group-flush"
+              *ngFor="let ep of episode; let i = index"
+            >
               <li class="list-group-item">
                 <a class="numSpan"
                   ><span>{{ ep.number }}</span></a
@@ -37,7 +40,18 @@
                 >
                 <a class="checkSpan"
                   ><label class="container">
-                    <input type="checkbox" />
+                    <input
+                      type="checkbox"
+                      [(ngModel)]="ep.selected"
+                      [id]="episode[i]"
+                      [name]="episode[i]"
+                      (change)="select(episode[i].season, episode[i].number)"
+                      [checked]="
+                        isChecked.includes(
+                          episode[i].season + '.' + episode[i].number
+                        )
+                      "
+                    />
                     <span class="checkmark"></span>
                   </label>
                 </a>
@@ -45,17 +59,15 @@
             </ul>
           </div>
         </ng-container>
-        <div class="card-body all-icons" style="float: right">
-          <div class="row">
-            <div class="card watchlistCardImg" *ngFor="let cast of casts">
-              <img
-                class="card-img-top"
-                src="{{ cast.person.image.original }}"
-                alt="Card image cap"
-              />
-              <div class="card-body">
-                <h5 class="card-title">{{ cast.person.name }}</h5>
-              </div>
+        <div class="card exploreCardInfo">
+          <div class="card watchlistCardImg" *ngFor="let cast of casts">
+            <img
+              class="card-img-top"
+              src="{{ cast.person.image.original }}"
+              alt="Card image cap"
+            />
+            <div class="card-body">
+              <h5 class="card-title">{{ cast.person.name }}</h5>
             </div>
           </div>
         </div>

@@ -46,6 +46,17 @@ var ShowDetails = require("./routes/ShowDetails")
 app.use("/", ShowDetails)
 
 
+// app.get('/addcheck', (req, res) => {
+//   let sql = `ALTER TABLE shows ADD checker varchar(255);`
+//   let query = db.db.query(sql, (err, data) => {
+//     if (err) {
+//       throw err
+//     }
+//     res.send('added check')
+//   })
+// })
+
+
 app.listen(PORT, () => {
   console.log('App is listetning on PORT', PORT);
 });
