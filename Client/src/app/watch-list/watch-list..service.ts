@@ -6,10 +6,20 @@ import { Observable } from "rxjs";
 @Injectable()
 export class WatchListService {
   private url: string = "http://localhost:4000/getshows";
+  private url1: string = "http://localhost:4000/finished";
+  private url2: string = "http://localhost:4000/notstarted";
   constructor(private http: HttpClient) {}
 
   getShows(email): Observable<GetShowModel[]> {
     return this.http.post<GetShowModel[]>(this.url, { email });
+  }
+
+  finished(email): Observable<GetShowModel[]> {
+    return this.http.post<GetShowModel[]>(this.url1, { email });
+  }
+
+  notstarted(email): Observable<GetShowModel[]> {
+    return this.http.post<GetShowModel[]>(this.url2, { email });
   }
 
   async searchShow(id) {
@@ -39,6 +49,19 @@ export class WatchListService {
         array.push(result);
       });
     }
+    return array;
+  }
+
+  filterNext(data) {
+    let array = [];
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].length !== 0) {
+        this.searchShow(data[i][0]["showId"]).then((result) => {
+          array.push([result, data[i][1]]);
+        });
+      }
+    }
+    console.log(array);
     return array;
   }
 
@@ -75,5 +98,38 @@ export class WatchListService {
     diffTime = diffTime - diffHours * 60;
     var diffmins = Math.floor(diffTime);
     return [diffDays, diffHours, diffmins];
+  }
+
+  finishedShow(data) {
+    let array = [];
+    for (let i = 0; i < data.length; i++) {
+      this.searchEpisode(data[i]["showId"]).then((data1) => {
+        // console.log(data1.length + ":" + data[i].checker.split(",").length);
+        if (data1.length === data[i].checker.split(",").length) {
+          array.push(data[i]);
+        }
+      });
+    }
+    return array;
+  }
+
+  watchNext(data) {
+    let array = [];
+    for (let i = 0; i < data.length; i++) {
+      let array1 = [];
+      this.searchEpisode(data[i]["showId"]).then((data1) => {
+        for (let j = 0; j < data1.length; j++) {
+          let str = data1[j].season + "." + data1[j].number;
+          let arr = data[i].checker.split(",");
+          if (!arr.includes(str)) {
+            array1.push(data[i]);
+            array1.push(str);
+            break;
+          }
+        }
+      });
+      array.push(array1);
+    }
+    return array;
   }
 }

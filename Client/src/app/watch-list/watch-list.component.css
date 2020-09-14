@@ -7,6 +7,14 @@
   /* float: left; */
 }
 
+.watchlistCardImg1 {
+  width: 12rem;
+  margin: 7px;
+  height: 23rem;
+  padding: 10px;
+  cursor: pointer;
+}
+
 .card-img-top {
   opacity: 1;
   height: 16rem;
@@ -35,6 +43,16 @@
 } */
 
 .card-title {
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.card-title1 {
+  font-weight: 800;
+  font-size: 17px;
+}
+
+.card-title2 {
   font-weight: 800;
   font-size: 13px;
 }

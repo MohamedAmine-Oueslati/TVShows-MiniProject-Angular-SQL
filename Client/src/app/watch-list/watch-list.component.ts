@@ -13,7 +13,12 @@ import { Component, OnInit } from "@angular/core";
 export class WatchListComponent implements OnInit {
   public active: number = 1;
   public user: any;
-  public shows: any;
+  public allShows: any;
+  public notStarted: any;
+  public fin: any;
+  public finished: any;
+  public next: any;
+  public nextWatch: any;
   public detail: boolean = false;
   constructor(
     private authService: AuthService,
@@ -23,6 +28,10 @@ export class WatchListComponent implements OnInit {
 
   activeList(num) {
     this.active = num;
+
+    this.finished = this.watchlistService.filterShows(this.fin);
+    console.log(this.next);
+    this.nextWatch = this.watchlistService.filterNext(this.next);
   }
 
   ngOnInit() {
@@ -31,7 +40,16 @@ export class WatchListComponent implements OnInit {
         console.log(user);
         this.user = user;
         this.watchlistService.getShows(user.email).subscribe((data) => {
-          this.shows = this.watchlistService.filterShows(data);
+          this.allShows = this.watchlistService.filterShows(data);
+        });
+        this.watchlistService.notstarted(user.email).subscribe((data) => {
+          this.notStarted = this.watchlistService.filterShows(data);
+        });
+        this.watchlistService.finished(user.email).subscribe((data) => {
+          this.fin = this.watchlistService.finishedShow(data);
+        });
+        this.watchlistService.finished(user.email).subscribe((data) => {
+          this.next = this.watchlistService.watchNext(data);
         });
       },
       (err) => {

@@ -45,6 +45,10 @@ app.use("/", WatchList)
 var ShowDetails = require("./routes/ShowDetails")
 app.use("/", ShowDetails)
 
+//Filter Show
+var FilterShow = require("./routes/FilterShow")
+app.use("/", FilterShow)
+
 
 // app.get('/addcheck', (req, res) => {
 //   let sql = `ALTER TABLE shows ADD checker varchar(255);`
