@@ -1,7 +1,8 @@
+import { combineLatest } from "rxjs";
 import { Router } from "@angular/router";
 import { WatchListService } from "./watch-list..service";
-import { GetShowModel } from "./watch-list.model";
-import { HttpClient } from "@angular/common/http";
+// import { GetShowModel } from "./watch-list.model";
+// import { HttpClient } from "@angular/common/http";
 import { AuthService } from "./../auth.service";
 import { Component, OnInit } from "@angular/core";
 
@@ -39,17 +40,16 @@ export class WatchListComponent implements OnInit {
       (user) => {
         console.log(user);
         this.user = user;
-        this.watchlistService.getShows(user.email).subscribe((data) => {
-          this.allShows = this.watchlistService.filterShows(data);
-        });
-        this.watchlistService.notstarted(user.email).subscribe((data) => {
-          this.notStarted = this.watchlistService.filterShows(data);
-        });
-        this.watchlistService.finished(user.email).subscribe((data) => {
-          this.fin = this.watchlistService.finishedShow(data);
-        });
-        this.watchlistService.finished(user.email).subscribe((data) => {
-          this.next = this.watchlistService.watchNext(data);
+        combineLatest(
+          this.watchlistService.getShows(user.email),
+          this.watchlistService.notstarted(user.email),
+          this.watchlistService.finished(user.email),
+          this.watchlistService.finished(user.email)
+        ).subscribe(([data1, data2, data3, data4]) => {
+          this.allShows = this.watchlistService.filterShows(data1);
+          this.notStarted = this.watchlistService.filterShows(data2);
+          this.fin = this.watchlistService.finishedShow(data3);
+          this.next = this.watchlistService.watchNext(data4);
         });
       },
       (err) => {

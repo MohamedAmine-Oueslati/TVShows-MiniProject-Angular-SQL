@@ -2,6 +2,7 @@ import { AuthService } from "./../auth.service";
 import { ActivatedRoute } from "@angular/router";
 import { ShowService } from "./show.service";
 import { Component, OnInit } from "@angular/core";
+import { combineLatest } from "rxjs";
 
 @Component({
   selector: "app-show",
@@ -24,34 +25,25 @@ export class ShowComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.authService.profile().subscribe(
-      (user) => {
-        this.user = user;
-        this.showService.filterCheck(user.email, id).subscribe((data) => {
-          this.isChecked = data["check"];
-        });
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    this.authService.profile().subscribe((user) => {
+      this.user = user;
+      this.showService.filterCheck(user.email, id).subscribe((data) => {
+        this.isChecked = data["check"];
+      });
+    });
     let id = this.route.snapshot.paramMap.get("id");
     console.log(id);
-    this.showService.filtershows(id).subscribe((data) => {
-      this.show = data["shows"];
+    combineLatest(
+      this.showService.filtershows(id),
+      this.showService.filterepisodes(id),
+      this.showService.filterseasons(id),
+      this.showService.filtercast(id)
+    ).subscribe(([data1, data2, data3, data4]) => {
+      this.show = data1["shows"];
+      this.episodes = data2["episodes"];
+      this.seasons = data3["seasons"];
+      this.casts = data4["cast"];
     });
-    this.showService.filterepisodes(id).subscribe((data) => {
-      console.log(data);
-      this.episodes = data["episodes"];
-    });
-    this.showService.filterseasons(id).subscribe((data) => {
-      this.seasons = data["seasons"];
-    });
-    this.showService.filtercast(id).subscribe((data) => {
-      console.log(data);
-      this.casts = data["cast"];
-    });
-    console.log(this.isChecked);
   }
   select(i, j) {
     let val = i + "." + j;
