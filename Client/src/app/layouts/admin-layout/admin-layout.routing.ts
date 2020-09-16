@@ -6,7 +6,7 @@ import { WatchListComponent } from "../../watch-list/watch-list.component";
 import { UpcomingComponent } from "../../upcoming/upcoming.component";
 import { ExploreComponent } from "../../explore/explore.component";
 import { FeedComponent } from "../../feed/feed.component";
-import { NotificationsComponent } from "../../notifications/notifications.component";
+import { EpDetailComponent } from "../../ep-detail/ep-detail.component";
 import { ShowComponent } from "../../show/show.component";
 
 export const AdminLayoutRoutes: Routes = [
@@ -16,6 +16,6 @@ export const AdminLayoutRoutes: Routes = [
   { path: "upcoming", component: UpcomingComponent },
   { path: "explore", component: ExploreComponent },
   { path: "feed", component: FeedComponent },
-  { path: "notifications", component: NotificationsComponent },
+  { path: "ep-detail", component: EpDetailComponent },
   { path: "show", component: ShowComponent },
 ];

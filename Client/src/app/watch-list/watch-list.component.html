@@ -38,7 +38,7 @@
               <div
                 class="card watchlistCardImg"
                 *ngFor="let show of allShows"
-                (click)="details(show)"
+                [routerLink]="['/user/show', show]"
               >
                 <img
                   class="card-img-top"
@@ -65,7 +65,7 @@
               <div
                 class="card watchlistCardImg1"
                 *ngFor="let shownext of nextWatch"
-                (click)="details(shownext)"
+                [routerLink]="['/user/show', shownext[0]]"
               >
                 <img
                   class="card-img-top"
@@ -97,7 +97,7 @@
               <div
                 class="card watchlistCardImg"
                 *ngFor="let showfin of finished"
-                (click)="details(showfin)"
+                [routerLink]="['/user/show', showfin]"
               >
                 <img
                   class="card-img-top"
@@ -124,7 +124,7 @@
               <div
                 class="card watchlistCardImg1"
                 *ngFor="let shownot of notStarted"
-                (click)="details(shownot)"
+                [routerLink]="['/user/show', shownot]"
               >
                 <img
                   class="card-img-top"

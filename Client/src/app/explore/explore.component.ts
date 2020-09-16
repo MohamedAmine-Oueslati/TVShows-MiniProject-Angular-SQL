@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { ShowsModel, SearchModel, AddShowModel } from "./explore.model";
+import { SearchModel, AddShowModel } from "./explore.model";
 import { AuthService } from "./../auth.service";
 
 @Component({

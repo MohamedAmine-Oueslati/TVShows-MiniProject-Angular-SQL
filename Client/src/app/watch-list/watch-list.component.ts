@@ -1,8 +1,6 @@
 import { combineLatest } from "rxjs";
 import { Router } from "@angular/router";
 import { WatchListService } from "./watch-list..service";
-// import { GetShowModel } from "./watch-list.model";
-// import { HttpClient } from "@angular/common/http";
 import { AuthService } from "./../auth.service";
 import { Component, OnInit } from "@angular/core";
 
@@ -58,8 +56,15 @@ export class WatchListComponent implements OnInit {
     );
   }
 
-  details(show) {
-    this.router.navigate(["/user/show", { id: show.id }]);
+  details(show: any) {
+    console.log(show);
+    if (show.id) {
+      let id = show.id;
+      this.router.navigate(["/user/show", { id }]);
+    } else {
+      let id = show[0].id;
+      this.router.navigate(["/user/show", { id }]);
+    }
     this.detail = true;
   }
 }

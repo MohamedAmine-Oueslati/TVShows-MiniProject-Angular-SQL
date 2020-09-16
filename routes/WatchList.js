@@ -27,7 +27,7 @@ var searchEpisode = async (id) => {
 
 router.post('/getshows', (req, res) => {
     let sql = `SELECT * FROM shows WHERE email='${req.body.email}'`
-    let query = db.db.query(sql, (err, data) => {
+    db.db.query(sql, (err, data) => {
         res.status(200).send(data)
     })
 })

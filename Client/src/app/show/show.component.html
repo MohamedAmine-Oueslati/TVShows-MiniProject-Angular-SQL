@@ -6,60 +6,57 @@
         <div class="card-header">
           <h3 class="title">TV Show Details</h3>
         </div>
-
         <form>
           <select
-            class="form-control col-md-10"
+            class="form-control col-md-11"
             data-toggle="select"
             data-minimum-results-for-search="Infinity"
             [(ngModel)]="selected"
             name="selected"
           >
-            <!-- <option hidden [value]="" selected>Select Season</option> -->
             <option *ngFor="let season of seasons">Season {{ season }}</option>
           </select>
         </form>
-        <ng-container *ngFor="let episode of episodes">
-          <div
-            class="cardEp"
-            *ngIf="episodes.indexOf(episode) + 1 == selected.slice(7)"
-          >
-            <ul
-              class="list-group list-group-flush"
-              *ngFor="let ep of episode; let i = index"
+        <div class="card exploreCardInfo1">
+          <ng-container *ngFor="let episode of episodes">
+            <div
+              class="cardEp"
+              *ngIf="episodes.indexOf(episode) + 1 == selected.slice(7)"
             >
-              <li class="list-group-item">
-                <a class="numSpan"
-                  ><span>{{ ep.number }}</span></a
-                >
-                <a class="nameSpan"
-                  ><span>{{ ep.name }}</span></a
-                >
-                <a class="dateSpan"
-                  ><span>{{ ep.airdate }}</span></a
-                >
-                <a class="checkSpan"
-                  ><label class="container">
-                    <input
-                      type="checkbox"
-                      [(ngModel)]="ep.selected"
-                      [id]="episode[i]"
-                      [name]="episode[i]"
-                      (change)="select(episode[i].season, episode[i].number)"
-                      [checked]="
-                        isChecked.includes(
-                          episode[i].season + '.' + episode[i].number
-                        )
-                      "
-                    />
-                    <span class="checkmark"></span>
-                  </label>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </ng-container>
+              <h2>Episodes :</h2>
+              <ul
+                class="list-group list-group-flush"
+                *ngFor="let ep of episode; let i = index"
+                [routerLink]="[
+                  '/user/ep-detail',
+                  {
+                    show: show.name,
+                    name: ep.name,
+                    number: ep.number,
+                    season: ep.season,
+                    summary: ep.summary,
+                    img: ep.image.original,
+                    airdate: ep.airdate
+                  }
+                ]"
+              >
+                <li class="list-group-item">
+                  <a class="numSpan"
+                    ><span>{{ ep.number }}</span></a
+                  >
+                  <a class="nameSpan"
+                    ><span>{{ ep.name }}</span></a
+                  >
+                  <a class="dateSpan"
+                    ><span>{{ ep.airdate }}</span></a
+                  >
+                </li>
+              </ul>
+            </div>
+          </ng-container>
+        </div>
         <div class="card exploreCardInfo">
+          <h2>CAST :</h2>
           <div class="card watchlistCardImg" *ngFor="let cast of casts">
             <img
               class="card-img-top"

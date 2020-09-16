@@ -13,12 +13,12 @@ export const ROUTES: RouteInfo[] = [
     icon: "users_single-02",
     class: "",
   },
-  {
-    path: "/user/notifications",
-    title: "Notifications",
-    icon: "ui-1_bell-53",
-    class: "",
-  },
+  // {
+  //   path: "/user/notifications",
+  //   title: "Notifications",
+  //   icon: "ui-1_bell-53",
+  //   class: "",
+  // },
   {
     path: "/user/watch-list",
     title: "Watch List",

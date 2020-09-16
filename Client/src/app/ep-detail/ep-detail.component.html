@@ -1,0 +1,41 @@
+<div class="panel-header panel-header-sm"></div>
+<div class="main-content">
+  <div class="row">
+    <div class="card card-nav-tabs col-md-12">
+      <div class="card exploreCardImg">
+        <img class="card-img-top" src="{{ image }}" alt="" />
+        <h2 class="card-title">
+          <strong>
+            {{ name }} (S{{ season | episode }}E{{ number | episode }})</strong
+          >
+        </h2>
+      </div>
+      <div class="card exploreCardInfo">
+        <h2 class="card-title">
+          <strong> {{ show }}</strong>
+        </h2>
+        <button
+          type="button"
+          class="btn btn-danger btn-round"
+          (click)="toggleAdd()"
+          *ngIf="!status"
+        >
+          <em class="fa fa-heart"></em> Not Watched
+        </button>
+        <button
+          type="button"
+          class="btn btn-success btn-round"
+          (click)="toggleRemove()"
+          *ngIf="status"
+        >
+          <em class="fas fa-thumbs-up"></em> Watched
+        </button>
+        <h3 class="card-title">Air Date : {{ airdate }}</h3>
+        <h3 class="card-text">
+          Summary :
+          {{ summary | summary }}
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>

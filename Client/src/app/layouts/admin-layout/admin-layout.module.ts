@@ -12,7 +12,7 @@ import { WatchListComponent } from "../../watch-list/watch-list.component";
 import { UpcomingComponent } from "../../upcoming/upcoming.component";
 import { ExploreComponent } from "../../explore/explore.component";
 import { FeedComponent } from "../../feed/feed.component";
-import { NotificationsComponent } from "../../notifications/notifications.component";
+import { EpDetailComponent } from "../../ep-detail/ep-detail.component";
 import { ChartsModule } from "ng2-charts/ng2-charts";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ToastrModule } from "ngx-toastr";
@@ -36,7 +36,7 @@ import { ShowComponent } from "../../show/show.component";
     ExploreComponent,
     FeedComponent,
     ShowComponent,
-    NotificationsComponent,
+    EpDetailComponent,
     SummaryPipe,
     EpisodesPipe,
   ],

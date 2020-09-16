@@ -29,6 +29,14 @@
   opacity: 1;
 }
 
+.watchlistCardImg1:hover .card-img-top {
+  opacity: 0.3;
+}
+
+.watchlistCardImg1:hover .iconhover {
+  opacity: 1;
+}
+
 .iconhover {
   opacity: 0;
   cursor: pointer;

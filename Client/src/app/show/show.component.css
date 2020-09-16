@@ -1,13 +1,13 @@
 .nameSpan {
-  width: 250px;
+  width: 300px;
   float: left;
 }
 .numSpan {
-  width: 30px;
+  width: 50px;
   float: left;
 }
 .dateSpan {
-  width: 150px;
+  width: 80px;
   float: left;
 }
 
@@ -20,7 +20,7 @@
 }
 
 .cardEp {
-  width: 32rem;
+  width: 30rem;
   margin: 16px;
   float: left;
 }
@@ -31,6 +31,9 @@ li:nth-child(odd) {
   height: 38px;
 }
 
+ul {
+  cursor: pointer;
+}
 /* .checkInput {
   border: 2px solid gray;
 } */
@@ -122,6 +125,15 @@ li:nth-child(odd) {
   width: 30rem;
   height: auto;
   padding: 6px;
+  align-content: center;
+}
+
+.exploreCardInfo1 {
+  float: left;
+  margin: 10px;
+  width: auto;
+  height: auto;
+  /* padding: 2px; */
   align-content: center;
 }
 

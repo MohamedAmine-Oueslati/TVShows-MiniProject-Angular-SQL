@@ -18,7 +18,7 @@
             />
             <div class="input-group-append">
               <div class="input-group-text" (click)="searchShow()">
-                <i class="now-ui-icons ui-1_zoom-bold"></i>
+                <em class="now-ui-icons ui-1_zoom-bold"></em>
               </div>
             </div>
           </div>
@@ -51,7 +51,6 @@
 <div *ngIf="detail" class="main-content">
   <div class="row">
     <div class="card card-nav-tabs col-md-12">
-      <!-- <h4 class="card-header card-header-info">Featured</h4> -->
       <div class="card exploreCardImg">
         <img
           class="card-img-top"
@@ -61,7 +60,7 @@
       </div>
       <div class="card exploreCardInfo">
         <h2 class="card-title">
-          <b> {{ show.show.name }} </b>
+          <strong> {{ show.show.name }} </strong>
         </h2>
         <button
           type="button"
@@ -69,7 +68,7 @@
           (click)="toggleAdd(show)"
           *ngIf="!status"
         >
-          <i class="fa fa-heart"></i> Add to my Shows
+          <em class="fa fa-heart"></em> Add to my Shows
         </button>
         <button
           type="button"
@@ -77,7 +76,7 @@
           (click)="toggleRemove(show)"
           *ngIf="status"
         >
-          <i class="fas fa-thumbs-up"></i> Show Added
+          <em class="fas fa-thumbs-up"></em> Show Added
         </button>
         <h4 class="card-title">Rating : {{ show.show.rating.average }}</h4>
         <h4 class="card-title">
@@ -96,7 +95,7 @@
         </h4>
       </div>
       <div class="card" style="width: 56rem; padding: 10px; margin: 10px">
-        <p class="card-text"><b>Summary :</b></p>
+        <p class="card-text"><strong>Summary :</strong></p>
         <p class="card-text">
           {{ show.show.summary | summary }}
         </p>
