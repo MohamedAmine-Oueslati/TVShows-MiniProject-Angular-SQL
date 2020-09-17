@@ -25,8 +25,8 @@ export class ShowService {
   filtercast(id: any): Observable<ShowDetailModel[]> {
     return this.http.post<ShowDetailModel[]>(this.url4, { id });
   }
-  epChecked(arr: any, email: any, showId: any): Observable<ShowDetailModel[]> {
-    return this.http.post<ShowDetailModel[]>(this.url5, { arr, email, showId });
+  epChecked(str: any, email: any, showId: any): Observable<ShowDetailModel[]> {
+    return this.http.post<ShowDetailModel[]>(this.url5, { str, email, showId });
   }
 
   filterCheck(email: any, showId: any): Observable<ShowDetailModel[]> {

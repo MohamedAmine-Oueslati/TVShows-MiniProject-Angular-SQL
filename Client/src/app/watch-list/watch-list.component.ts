@@ -29,8 +29,8 @@ export class WatchListComponent implements OnInit {
     this.active = num;
 
     this.finished = this.watchlistService.filterShows(this.fin);
-    console.log(this.next);
     this.nextWatch = this.watchlistService.filterNext(this.next);
+    console.log(this.watchlistService.filterNext(this.next));
   }
 
   ngOnInit() {

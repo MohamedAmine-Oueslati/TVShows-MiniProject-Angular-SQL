@@ -4,7 +4,13 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
-          <h3 class="title">TV Show Details</h3>
+          <h3 class="title" style="float: left">TV Show Details</h3>
+          <button style="float: right" [routerLink]="['/user/watch-list']">
+            <em
+              class="fa fa-chevron-circle-left"
+              style="font-size: 30px; color: red"
+            ></em>
+          </button>
         </div>
         <form>
           <select
@@ -30,12 +36,13 @@
                 [routerLink]="[
                   '/user/ep-detail',
                   {
+                    id: show.id,
                     show: show.name,
                     name: ep.name,
                     number: ep.number,
                     season: ep.season,
                     summary: ep.summary,
-                    img: ep.image.original,
+                    img: ep.image?.original,
                     airdate: ep.airdate
                   }
                 ]"

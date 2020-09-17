@@ -25,9 +25,15 @@
   float: left;
 }
 
-li:nth-child(odd) {
+li {
   background: #f5f5f5;
   /* color: white; */
+  height: 38px;
+}
+
+li:hover {
+  background: black;
+  color: white;
   height: 38px;
 }
 

@@ -11,30 +11,56 @@
         </h2>
       </div>
       <div class="card exploreCardInfo">
-        <h2 class="card-title">
-          <strong> {{ show }}</strong>
-        </h2>
-        <button
-          type="button"
-          class="btn btn-danger btn-round"
-          (click)="toggleAdd()"
-          *ngIf="!status"
-        >
-          <em class="fa fa-heart"></em> Not Watched
-        </button>
-        <button
-          type="button"
-          class="btn btn-success btn-round"
-          (click)="toggleRemove()"
-          *ngIf="status"
-        >
-          <em class="fas fa-thumbs-up"></em> Watched
-        </button>
-        <h3 class="card-title">Air Date : {{ airdate }}</h3>
-        <h3 class="card-text">
-          Summary :
-          {{ summary | summary }}
-        </h3>
+        <div>
+          <h2 class="card-title">
+            <strong> {{ show }}</strong>
+          </h2>
+          <button
+            style="position: absolute; left: 88%; bottom: 82%"
+            [routerLink]="[
+              '/user/show',
+              {
+                id: id,
+                show: show,
+                name: name,
+                number: number,
+                season: season,
+                summary: summary,
+                img: image,
+                airdate: airdate
+              }
+            ]"
+          >
+            <em
+              class="fa fa-chevron-circle-left"
+              style="font-size: 30px; color: red"
+            ></em>
+          </button>
+        </div>
+        <div>
+          <button
+            type="button"
+            class="btn btn-danger btn-round"
+            (click)="toggle()"
+            *ngIf="!status"
+            [disabled]="disable"
+          >
+            <em class="fa fa-heart"></em> Not Watched
+          </button>
+          <button
+            type="button"
+            class="btn btn-success btn-round"
+            (click)="toggle()"
+            *ngIf="status"
+          >
+            <em class="fas fa-thumbs-up"></em> Watched
+          </button>
+          <h3 class="card-title">Air Date : {{ airdate }}</h3>
+          <h3 class="card-text">
+            Summary :
+            {{ summary | summary }}
+          </h3>
+        </div>
       </div>
     </div>
   </div>

@@ -73,33 +73,51 @@ router.post('/filtercast', (req, res) => {
 })
 
 router.post('/epchecked', (req, res) => {
-    let arr = req.body.arr
-    let str = arr.join(',')
-    let sql = `UPDATE shows SET checker= '${str}' 
+    let sql = `SELECT * FROM shows
     WHERE email='${req.body.email}' AND showId=${req.body.showId}`
     db.db.query(sql, (err, result) => {
         if (err) {
             throw err
         }
-        res.send('check updated')
+        let str = req.body.str
+        let check = []
+        if (result[0].checker) {
+            check = result[0].checker.split(',')
+            if (!check.includes(str)) {
+                check.push(str)
+            }
+            else {
+                check.splice(check.indexOf(str), 1)
+            }
+        } else {
+            check.push(str)
+        }
+        let checked = check.join(',')
+        let sql = `UPDATE shows SET checker= '${checked}' 
+        WHERE email='${req.body.email}' AND showId=${req.body.showId}`
+        db.db.query(sql, (err, result) => {
+            if (err) {
+                throw err
+            }
+        })
     })
 })
 
 
-// router.post('/filtercheck', (req, res) => {
-//     let sql = `SELECT * FROM shows
-//     WHERE email='${req.body.email}' AND showId=${req.body.showId}`
-//     db.db.query(sql, (err, result) => {
-//         if (err) {
-//             throw err
-//         }
-//         let check = []
-//         if (result[0].checker) {
-//             check = result[0].checker.split(',')
-//         }
-//         res.status(200).send({ check })
-//     })
-// })
+router.post('/filtercheck', (req, res) => {
+    let sql = `SELECT * FROM shows
+    WHERE email='${req.body.email}' AND showId=${req.body.showId}`
+    db.db.query(sql, (err, result) => {
+        if (err) {
+            throw err
+        }
+        let check = []
+        if (result[0].checker) {
+            check = result[0].checker.split(',')
+        }
+        res.status(200).send({ check })
+    })
+})
 
 
 module.exports = router

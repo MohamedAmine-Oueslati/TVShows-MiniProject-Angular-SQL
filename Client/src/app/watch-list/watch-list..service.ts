@@ -61,7 +61,6 @@ export class WatchListService {
         });
       }
     }
-    console.log(array);
     return array;
   }
 
