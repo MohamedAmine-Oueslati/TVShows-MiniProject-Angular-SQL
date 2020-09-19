@@ -71,7 +71,12 @@
               alt="Card image cap"
             />
             <div class="card-body">
-              <h5 class="card-title">{{ cast.person.name }}</h5>
+              <h5 class="card-title" title="{{ cast.person.name }}">
+                {{ cast.person.name.slice(0, 18) }}
+              </h5>
+              <h5 class="card-title1" title="{{ cast.character.name }}">
+                {{ cast.character.name.slice(0, 18) }}
+              </h5>
             </div>
           </div>
         </div>

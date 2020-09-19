@@ -45,7 +45,11 @@ export class EpDetailComponent implements OnInit {
       this.number = data.number;
       this.season = data.season;
       this.summary = data.summary;
-      this.image = data.img;
+      if (data.img == null) {
+        this.image = "https://i.postimg.cc/26wRQDRK/noimageavailable.png";
+      } else {
+        this.image = data.img;
+      }
       this.airdate = data.airdate;
       let current: any = new Date();
       let next: any = new Date(data.airdate);
