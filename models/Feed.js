@@ -4,15 +4,15 @@ const db = require('../Database-SQL');
 const router = express.Router();
 
 
-router.get('/createshowstable', (req, res) => {
-    let sql = `CREATE TABLE shows(id int AUTO_INCREMENT, email VARCHAR(255), showId VARCHAR(255),
-     PRIMARY KEY(id))`;
+router.get('/createfeedtable', (req, res) => {
+    let sql = `CREATE TABLE feed(id int AUTO_INCREMENT, email VARCHAR(255), message VARCHAR(255), 
+    image VARCHAR(255), likes VARCHAR(255), PRIMARY KEY(id))`;
     db.db.query(sql, (err, result) => {
         if (err) {
             throw err
         }
         console.log(result)
-        res.send('Shows table created')
+        res.send('Feed table created')
     })
 })
 

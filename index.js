@@ -49,6 +49,13 @@ app.use("/", ShowDetails)
 var FilterShow = require("./routes/FilterShow")
 app.use("/", FilterShow)
 
+//Filter Feed
+var FilterFeed = require("./routes/FilterFeed")
+app.use("/", FilterFeed)
+
+//Feed Table
+var Feed = require("./models/Feed")
+app.use("/", Feed)
 
 // app.get('/addcheck', (req, res) => {
 //   let sql = `ALTER TABLE shows ADD checker varchar(255);`

@@ -2,6 +2,7 @@ const sequelize = require('sequelize')
 const express = require('express')
 const app = express();
 const db = require('../Database-SQL');
+const router = express.Router();
 
 // module.exports = db.sequelize.define('user',
 //     {
@@ -45,7 +46,7 @@ const db = require('../Database-SQL');
 // })
 
 // Create Table
-app.get('/createuserstable', (req, res) => {
+router.get('/createuserstable', (req, res) => {
     let sql = `CREATE TABLE users(id int AUTO_INCREMENT, email VARCHAR(255), username VARCHAR(255),
      password VARCHAR(255), firstName VARCHAR(255), LastName VARCHAR(255),address VARCHAR(255),
      city VARCHAR(255),country VARCHAR(255),zipCode VARCHAR(255),aboutMe VARCHAR(255),
@@ -71,14 +72,16 @@ app.get('/createuserstable', (req, res) => {
 //     })
 // })
 
-  // Delete Post
-  // app.get('/deletepost/:id', (req, res) => {
-  //     let sql = `DELETE FROM posts WHERE id = ${req.params.id}`
-  //     let query = db.db.query(sql, (err, result) => {
-  //         if (err) {
-  //             throw err
-  //         }
-  //         console.log(result)
-  //         res.send('Post 1 deleted')
-  //     })
-  // })
+// Delete Post
+// app.get('/deletepost/:id', (req, res) => {
+//     let sql = `DELETE FROM posts WHERE id = ${req.params.id}`
+//     let query = db.db.query(sql, (err, result) => {
+//         if (err) {
+//             throw err
+//         }
+//         console.log(result)
+//         res.send('Post 1 deleted')
+//     })
+// })
+
+module.exports = router
