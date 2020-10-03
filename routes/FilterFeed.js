@@ -9,6 +9,16 @@ const fetch = require("node-fetch");
 
 router.use(cors())
 
-
+// Add Show
+router.post('/feedpost', (req, res) => {
+    console.log(req.body)
+    let sql = 'INSERT INTO feed SET ?'
+    let query = db.db.query(sql, req.body.feed, (err, result) => {
+        if (err) {
+            throw err
+        }
+        res.send('feed added')
+    })
+})
 
 module.exports = router

@@ -71,15 +71,21 @@
                   id="exampleFormControlTextarea1"
                   placeholder="Enter your comment here"
                   rows="2"
+                  [(ngModel)]="feed"
+                  value="{{ feed }}"
                 ></textarea>
               </div>
-              <button type="button" class="btn btn-danger ButtonPost">
+              <button
+                type="button"
+                class="btn btn-danger ButtonPost"
+                (click)="post()"
+              >
                 Post
               </button>
             </div>
             <div class="card-body all-icons">
               <div class="row">
-                <h2>Amine Juve</h2>
+                <h2>{{ user.username }}</h2>
                 <div
                   class="card watchlistCardImg1"
                   *ngFor="let shownext of nextWatch"

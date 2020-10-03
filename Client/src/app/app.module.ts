@@ -1,3 +1,4 @@
+import { FeedService } from "./feed/feed.service";
 import { ShowService } from "./show/show.service";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -45,7 +46,13 @@ import { RegisterComponent } from "./homecomponents/register/register.component"
     LogInComponent,
     RegisterComponent,
   ],
-  providers: [AuthService, AuthGuardService, WatchListService, ShowService],
+  providers: [
+    AuthService,
+    AuthGuardService,
+    WatchListService,
+    ShowService,
+    FeedService,
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

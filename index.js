@@ -57,13 +57,13 @@ app.use("/", FilterFeed)
 var Feed = require("./models/Feed")
 app.use("/", Feed)
 
-// app.get('/addcheck', (req, res) => {
-//   let sql = `ALTER TABLE shows ADD checker varchar(255);`
+// app.get('/addtime', (req, res) => {
+//   let sql = `ALTER TABLE feed ADD time varchar(255);`
 //   let query = db.db.query(sql, (err, data) => {
 //     if (err) {
 //       throw err
 //     }
-//     res.send('added check')
+//     res.send('added time')
 //   })
 // })
 
