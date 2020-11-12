@@ -48,7 +48,8 @@ const router = express.Router();
 // Create Table
 router.get('/createuserstable', (req, res) => {
     let sql = `CREATE TABLE users(id int AUTO_INCREMENT, email VARCHAR(255), username VARCHAR(255),
-     password VARCHAR(255), firstName VARCHAR(255), LastName VARCHAR(255),address VARCHAR(255),
+     password VARCHAR(255), firstName VARCHAR(255), LastName VARCHAR(255), fullName VARCHAR(255) 
+     created VARCHAR(255) , address VARCHAR(255),
      city VARCHAR(255),country VARCHAR(255),zipCode VARCHAR(255),aboutMe VARCHAR(255),
      PRIMARY KEY(id))`;
     db.db.query(sql, (err, result) => {

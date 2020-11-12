@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 const mysql = require('mysql');
 const express = require('express');
 const app = express();
+const router = express.Router();
 // const db = {}
 
 
@@ -39,7 +40,7 @@ db.connect((err) => {
 })
 
 // Create DB
-app.get('/createdatabase', (req, res) => {
+app.get('/createdb', (req, res) => {
     let sql = 'CREATE DATABASE angularmysql';
     db.query(sql, (err, result) => {
         if (err) {
@@ -50,3 +51,4 @@ app.get('/createdatabase', (req, res) => {
 })
 
 module.exports.db = db;
+// module.exports = router

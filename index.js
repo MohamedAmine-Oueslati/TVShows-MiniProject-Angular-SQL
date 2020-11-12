@@ -1,8 +1,6 @@
 const express = require('express');
 const app = express();
-const fetch = require("node-fetch");
-const mysql = require('mysql');
-
+// const fetch = require("node-fetch");
 const db = require('./Database-SQL')
 
 const PORT = process.env.PORT || 4000;
@@ -57,15 +55,18 @@ app.use("/", FilterFeed)
 var Feed = require("./models/Feed")
 app.use("/", Feed)
 
-// app.get('/addtime', (req, res) => {
-//   let sql = `ALTER TABLE feed ADD time varchar(255);`
-//   let query = db.db.query(sql, (err, data) => {
-//     if (err) {
-//       throw err
-//     }
-//     res.send('added time')
-//   })
-// })
+//User Table
+var User = require("./models/User")
+app.use("/", User)
+
+//Show Table
+var Show = require("./models/Show")
+app.use("/", Show)
+
+//Database
+// var Database = require("./Database-SQL")
+// app.use("/", Database)
+
 
 
 app.listen(PORT, () => {

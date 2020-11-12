@@ -1,68 +1,30 @@
-.watchlistCardImg {
-  width: 12rem;
-  margin: 7px;
-  height: 21rem;
-  padding: 10px;
-  cursor: pointer;
-  /* float: left; */
+.feedCard {
+  width: 50rem;
+  margin: 0.5rem 10rem;
+}
+.cardLike {
+  color: rgb(255, 94, 0);
+  margin-left: 2rem;
+  vertical-align: middle;
 }
 
-.watchlistCardImg1 {
-  width: 12rem;
-  margin: 7px;
-  height: 23rem;
-  padding: 10px;
+.likeContainer {
   cursor: pointer;
 }
 
-.card-img-top {
-  opacity: 1;
-  height: 16rem;
-  width: auto;
+.cardTime {
+  float: right;
 }
-
-.watchlistCardImg:hover .card-img-top {
-  opacity: 0.3;
-}
-
-.watchlistCardImg:hover .iconhover {
-  opacity: 1;
-}
-
-.watchlistCardImg1:hover .card-img-top {
-  opacity: 0.3;
-}
-
-.watchlistCardImg1:hover .iconhover {
-  opacity: 1;
-}
-
-.iconhover {
-  opacity: 0;
-  cursor: pointer;
-  position: absolute;
-  top: 38%;
-  left: 42%;
-  font-size: 30px;
-}
-/* 
-  .diviconhover {
-    opacity: 0;
-  } */
-
 .card-title {
   font-weight: 800;
-  font-size: 13px;
+  display: inline-block;
 }
 
-.card-title1 {
-  font-weight: 800;
-  font-size: 17px;
-}
-
-.card-title2 {
-  font-weight: 800;
-  font-size: 13px;
+.fa-heart {
+  margin-top: 5px;
+  font-size: 18px;
+  float: left;
+  color: rgb(255, 94, 0);
 }
 
 .nav-link {

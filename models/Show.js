@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 router.get('/createshowstable', (req, res) => {
-    let sql = `CREATE TABLE shows(id int AUTO_INCREMENT, email VARCHAR(255), showId VARCHAR(255),
+    let sql = `CREATE TABLE shows(id int AUTO_INCREMENT, email VARCHAR(255), checker VARCHAR(255), showId VARCHAR(255),
      PRIMARY KEY(id))`;
     db.db.query(sql, (err, result) => {
         if (err) {

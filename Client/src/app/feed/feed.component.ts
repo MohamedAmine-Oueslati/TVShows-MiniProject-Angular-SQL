@@ -24,6 +24,13 @@ export class FeedComponent implements OnInit {
       (user) => {
         console.log(user);
         this.user = user;
+
+        this.feedService
+      .feedGet(user.email)
+      .subscribe((data) => {
+        console.log(data)
+        this.posts = data.reverse();
+      });
       },
       (err) => {
         console.log(err);
@@ -47,6 +54,7 @@ export class FeedComponent implements OnInit {
         time: this.feedService.TimeDate(),
       })
       .subscribe((data) => {
+        console.log(data)
         this.posts = data;
       });
     this.feed = "";

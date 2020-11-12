@@ -15,9 +15,10 @@
               class="form-control"
               placeholder="Search..."
               [(ngModel)]="query"
+              (keyup)="searchShow()"
             />
             <div class="input-group-append">
-              <div class="input-group-text" (click)="searchShow()">
+              <div class="input-group-text">
                 <em class="now-ui-icons ui-1_zoom-bold"></em>
               </div>
             </div>
